@@ -1,5 +1,8 @@
-import todo from './todo.js';
+import ToDo from "./todo.js";
+import dom from "./dom.js";
 
-console.log("hey its todo time");
+dom();
 
-todo();
+console.log("index js is working");
+
+new ToDo();
