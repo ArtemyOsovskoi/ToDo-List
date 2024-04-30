@@ -1,8 +1,15 @@
-import ToDo from "./todo.js";
-import dom from "./dom.js";
-
-dom();
+import ToDo, { todoArr } from "./todo.js";
 
 console.log("index js is working");
 
-new ToDo();
+let firstNote = new ToDo();
+firstNote.createToDo();
+todoArr.push(firstNote);
+console.log(firstNote);
+console.log(todoArr);
+
+let secondNote = new ToDo();
+secondNote.createToDo();
+todoArr.push(secondNote);
+console.log(secondNote);
+console.log(todoArr);
