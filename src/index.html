@@ -8,8 +8,68 @@
   <body>
     <header></header>
     <div id="main">
-      <div id="sidebar"></div>
-      <div id="todoDisplay"></div>
+        <div id="sidebar">
+        <!--<button id="projectButton">new project</button>-->      
+        </div>
+        <div id="todoDisplay">
+        <!-- todo popup window -->
+        <div id="popupButtonContainer">
+            <input type="submit" id="formPopup" value="New todo"></input>
+        </div>
+        <dialog id="dialog">
+        <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
+        <form id="form" method="dialog" onsubmit="return false"> 
+            <p>
+                <label for="text">Text</label>
+                <br>
+                <input type="text" id="text" min="1"  
+                title="Must contain at least 1 letter" required />
+            </p>
+            <p>
+                <label for="date">date</label>
+                <br>
+                <input type="date" id="date" name="date" required />
+            </p>
+            <p>
+                <label for="importance">Importance</label>
+                <br>
+                <select name="importance" id="importance">
+                    <option name="option" value="important">Important</option>
+                    <option name="option" value="Not important">Not important</option>
+                </select>   
+            </p>
+            <div id="formButtons">
+                <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
+                <input type="submit" id="todoButton" value="Add ToDo"></input>
+            </div>
+        </form>
+        </dialog>
+      </div>
+    <!-- project popup window -->
+        <div id="popupButtonContainer">
+            <input type="submit" id="formProjectPopup" value="New project"></input>
+        </div>
+        <dialog id="dialogProject">
+        <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
+        <form id="form" method="dialog" onsubmit="return false"> 
+            <p>
+                <label for="name">Name</label>
+                <br>
+                <input type="text" id="name" min="1"  
+                title="Must contain at least 1 letter" required />
+            </p>
+            <p>
+                <label for="description">Description</label>
+                <br>
+                <input type="text" id="name" min="1"  
+                title="Must contain at least 1 letter" required />
+            </p>
+            <div id="formButtons">
+                <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
+                <input type="submit" id="projectButton" value="Add project"></input>
+            </div>
+        </form>
+        </dialog>
     </div>
     <footer></footer>
   </body>

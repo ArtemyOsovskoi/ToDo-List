@@ -1,5 +1,4 @@
-//single todo note module
-export const todoArr = [];
+
 
 export default class ToDo {
   constructor(text, date, importance) {
@@ -9,24 +8,31 @@ export default class ToDo {
   }
 
   createToDo() {
-    this.text = prompt("text");
-    this.date = prompt("date");
-    this.importance = prompt("importance");
+/*     this.text = prompt("enter text");
+    this.date = prompt("enter date");
+    this.importance = prompt("choose importance"); */
+  //take values from form input fields
+  this.text = document.getElementById("text").value;
+  this.date = document.getElementById("date").value;
+  this.importance = document.getElementById("importance").value;
 
-/*     console.log(` ToDo: 
-        text: ${this.text} 
-        date: ${this.date}
-        importance: ${this.importance}`); */
   }
 
-/*   todoArray() {
-    todoArr.push(this.text, this.date, this.importance);
+  changeToDo() {
+    //change current todo text, date and importance
+    this.text = prompt("enter new text");
+    this.date = prompt("enter new date");
+    this.importance = prompt("choose importance");
+  }
 
-    console.log(todoArr);
-  } */
+  doneToDo() {
+    //set todo as done
+
+  }
+
+  deleteToDo() {
+    this.text = null;
+    this.date = null;
+    this.importance = null;
+  }
 }
-
-
-
-
-
