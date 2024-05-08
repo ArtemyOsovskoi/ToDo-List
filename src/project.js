@@ -1,10 +1,4 @@
-export const defaultToDoArr = [
-    {
-        "text": "default text",
-        "date": 12,
-        "importance": true
-    },
-];
+export const defaultToDoArr = [];
 
 export default class Project {
     constructor(name, description) {

@@ -38,19 +38,23 @@ export function closeDialog() {
     });
 }
 
+
 //add new todo
 export default function addToDo() {
   const todoButton = document.getElementById("todoButton");
 
-  const newToDo = new ToDo(text, date, importance);
+
 
   todoButton.addEventListener("click", () => {
+    const newToDo = new ToDo(text, date, importance);
     newToDo.createToDo();
     defaultToDoArr.push(newToDo);
     console.log("new todo:", newToDo);
     console.log("added in:", defaultToDoArr);
   });
 }
+
+
 
 //add new project
 

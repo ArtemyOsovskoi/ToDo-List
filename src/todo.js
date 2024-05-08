@@ -1,5 +1,4 @@
 
-
 export default class ToDo {
   constructor(text, date, importance) {
     this.text = text;
@@ -15,7 +14,6 @@ export default class ToDo {
   this.text = document.getElementById("text").value;
   this.date = document.getElementById("date").value;
   this.importance = document.getElementById("importance").value;
-
   }
 
   changeToDo() {
