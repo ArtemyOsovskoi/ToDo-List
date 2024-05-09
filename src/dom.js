@@ -1,16 +1,6 @@
 import ToDo from "./todo.js";
 import Project, { defaultToDoArr }  from "./project.js";
 
-/* export function addProject() {
-    const projectButton = document.getElementById("projectButton");
-    let newProject = new Project();
-
-    projectButton.addEventListener("click", ()=> {
-        newProject.createProject();
-        console.log(newProject);
-    })
-} */
-
 //new todo popup window
 export function dialogToDo() {
     const showFormWindow = document.getElementById("formPopup");
@@ -30,7 +20,7 @@ export function dialogProject() {
 }
 
 
-//close popup
+//close popup todo
 export function closeDialog() {
     const closeButton = document.getElementById("closeButton");
     closeButton.addEventListener("click", () => {
@@ -43,8 +33,6 @@ export function closeDialog() {
 export default function addToDo() {
   const todoButton = document.getElementById("todoButton");
 
-
-
   todoButton.addEventListener("click", () => {
     const newToDo = new ToDo(text, date, importance);
     newToDo.createToDo();
@@ -54,12 +42,37 @@ export default function addToDo() {
   });
 }
 
+/* export function addProject() {
+    const projectButton = document.getElementById("projectButton");
+    let newProject = new Project();
 
+    projectButton.addEventListener("click", ()=> {
+        newProject.createProject();
+        console.log(newProject);
+    })
+} */
 
 //add new project
+export function addProject() {
+  const projectButton = document.getElementById("projectButton");
 
+  projectButton.addEventListener("click", () => {
+    const newProject = new Project(title, description);
+    newProject.createProject();
 
+    console.log("new project is made:", newProject);
+  });
+}
 
+//close popup project
+/* export function closeDialogProject() {
+    const closeProjectButton = document.getElementById("closeProjectButton");
+    closeProjectButton.addEventListener("click", () => {
+        console.log("close project");
+        dialog.close();
+    });
+}
+ */
 
 
 

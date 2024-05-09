@@ -1,4 +1,4 @@
-import addToDo, { closeDialog, dialogToDo, dialogProject }  from "./dom.js";
+import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeDialogProject }  from "./dom.js";
 import { defaultToDoArr }  from "./project.js";
 
 console.log("index.js is working");
@@ -13,11 +13,9 @@ addToDo();
 //show project window
 dialogProject();
 //add new project from project window
+addProject();
 
-//close dialog window
+//close todo window
 closeDialog();
-
-/* let firstNote = new ToDo();
-firstNote.createToDo(); */
-/* todoArr.push(firstNote);
-console.log("note array", todoArr); */
+//close project window
+/* closeDialogProject(); */

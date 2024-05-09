@@ -1,13 +1,19 @@
-export const defaultToDoArr = [];
+export const defaultToDoArr = [
+    {
+        text: "call mom",
+        date: "12-05-2024",
+        importance: true
+    },
+];
 
 export default class Project {
-    constructor(name, description) {
-        this.name = name;
+    constructor(title, description) {
+        this.title = title;
         this.description = description;
     }
 
     createProject() {
-        let project = [];
-        return project;
+        this.title = document.getElementById("title").value;
+        this.description = document.getElementById("description").value;
     }
 }
