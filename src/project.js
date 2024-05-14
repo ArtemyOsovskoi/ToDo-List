@@ -1,8 +1,7 @@
-export const defaultToDoArr = [
+export const projects = [
     {
-        text: "call mom",
-        date: "12-05-2024",
-        importance: true
+        title: "default project",
+        description: "just a default testing project",
     },
 ];
 
