@@ -1,5 +1,6 @@
-import ToDo, { changeToDo, defaultToDoArr } from "./todo.js";
+import ToDo, { changeToDo, defaultToDoArr, removeToDo } from "./todo.js";
 import Project, { projects }  from "./project.js";
+
 
 //new todo popup window
 export function dialogToDo() {
@@ -65,24 +66,26 @@ export default function addToDo() {
   });
 }
 
-export function deleteToDo() {
-    const deleteToDoButton = document.getElementById("deleteToDo");
-
-    deleteToDoButton.addEventListener("click", () => {
-        defaultToDoArr.pop();
-        console.log("deleted last todo", defaultToDoArr);
-    })
-}
 
 export function updateToDo() {
     const changeToDoButton = document.getElementById("todoChangeButton");
 
     changeToDoButton.addEventListener("click", () => {
-        const todoId = defaultToDoArr.find((todo) => todo.id == 0);
-        changeToDo(todoId);
-        console.log("todo is changed", todoId);
+        const toChangeId = defaultToDoArr.find((todo) => todo.id == 1);
+        changeToDo(toChangeId);
+        console.log(`changed todo with id ${toChangeId.id}`, toChangeId);
         console.log("updated array", defaultToDoArr);
    });
+}
+
+export function deleteToDo() {
+    const deleteToDoButton = document.getElementById("deleteToDo");
+
+    deleteToDoButton.addEventListener("click", () => {
+        const toRemoveId = defaultToDoArr.find((todo) => todo.id == 3);
+        removeToDo(toRemoveId);
+        console.log(`deleted todo with id ${toRemoveId.id}`, defaultToDoArr);
+    })
 }
 
 //add new project

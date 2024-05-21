@@ -1,12 +1,25 @@
 export const defaultToDoArr = [
     {
-        text: "default todo text",
+        text: "1st text",
         date: "12-05-2024",
         importance: true,
+        id: 0,
+    },
+    {
+        text: "2nd text",
+        date: "17-05-2024",
+        importance: true,
+        id: 1,
+    },
+    {
+        text: "3rd text",
+        date: "02-05-2024",
+        importance: false,
+        id: 2,
     },
 ];
 
-let idCounter = 0;
+let idCounter = 3;
 
 export default class ToDo {
   constructor(text, date, importance, id) {
@@ -28,11 +41,11 @@ export default class ToDo {
     //set todo as done - same as delete basically?
   }
 
-  deleteToDo() {
+/*   deleteToDo() {
     this.text = null;
     this.date = null;
     this.importance = null;
-  }
+  } */
 }
 
 
@@ -44,3 +57,8 @@ export function changeToDo(object) {
     //id stays the same
 }
 
+export function removeToDo(object) {
+  /* defaultToDoArr.splice(defaultToDoArr.indexOf(object), 1); */
+  defaultToDoArr.splice(defaultToDoArr.indexOf(object), 1);
+/* items.splice(items.findIndex(i => i.id === "abc"), 1) */
+}
