@@ -1,5 +1,5 @@
 import ToDo, { changeToDo, defaultToDoArr, removeToDo } from "./todo.js";
-import Project, { projects }  from "./project.js";
+import Project, { projects, removeProject }  from "./project.js";
 
 
 //new todo popup window
@@ -28,6 +28,13 @@ export function dialogProject() {
     });
 }
 
+export function dialogChangeProject() {
+    const showChangeProjectWindow = document.getElementById("popupChangeProject");
+    const dialogProjectChange = document.getElementById("dialogChangeProject");
+    showChangeProjectWindow.addEventListener("click", () => {
+        dialogProjectChange.showModal();
+    });
+}
 
 //close popup todo
 export function closeDialog() {
@@ -53,6 +60,13 @@ export function closeProjectDialog() {
     });
 }
 
+export function closeChangeProjectDialog() {
+    const closeChangeProjectButton = document.getElementById("closeProjectChangeButton");
+    closeChangeProjectButton.addEventListener("click", () => {
+        dialogProjectChange.close();
+    });
+}
+
 //add new todo
 export default function addToDo() {
   const todoButton = document.getElementById("todoButton");
@@ -74,7 +88,7 @@ export function updateToDo() {
         const toChangeId = defaultToDoArr.find((todo) => todo.id == 1);
         changeToDo(toChangeId);
         console.log(`changed todo with id ${toChangeId.id}`, toChangeId);
-        console.log("updated array", defaultToDoArr);
+        console.log("todo default array", defaultToDoArr);
    });
 }
 
@@ -86,7 +100,7 @@ export function deleteToDo() {
         removeToDo(toRemoveId);
         console.log(`deleted todo with id ${toRemoveId.id}`, defaultToDoArr);
     })
-}
+}  
 
 //add new project
 export function addProject() {
@@ -101,3 +115,23 @@ export function addProject() {
   });
 }
 
+export function changeProject() {
+    const changeProjectButton = document.getElementById("projectChangeButton");
+
+    changeProjectButton.addEventListener("click", () => {
+        const toChangeProjectId = projects.find((project) => project.id == 0);
+        changeProject(toChangeProjectId);
+        console.log(`updated project with id ${toChangeProjectId.id}`, toChangeProjectId);
+        console.log("projects array", projects);
+   });
+}
+
+export function deleteProject() {
+    const deleteProjectButton = document.getElementById("deleteProject");
+
+    deleteProjectButton.addEventListener("click", () => {
+        const toRemoveProjectId = projects.find((project) => project.id == 0);
+        removeProject(toRemoveProjectId);
+        console.log(`deleted project with id ${toRemoveProjectId.id}`, projects);
+    })
+} 

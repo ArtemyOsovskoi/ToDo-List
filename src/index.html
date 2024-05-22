@@ -13,7 +13,7 @@
         <div id="sidebar">    
          <div id="todoDisplay">
 
-        <!-- todo popup window -->
+<!-- todo popup window -->
         <div id="popupButtonContainer">
             <input type="submit" id="formPopup" value="New todo"></input>
         </div>
@@ -34,10 +34,6 @@
             <p>
                 <label for="importance">Important?</label>
                 <input type="checkbox" id="importance">
-<!--                 <select name="importance" id="importance">
-                    <option name="option" value="important">Important</option>
-                    <option name="option" value="Not important">Not important</option>
-                </select> -->   
             </p>
             <div id="formButtons">
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
@@ -47,7 +43,7 @@
         </dialog>
       </div>
 
-    <!-- project popup window -->
+<!-- project popup window -->
         <div id="popupButtonProjectContainer">
             <input type="submit" id="formProjectPopup" value="New project"></input>
         </div>
@@ -94,11 +90,7 @@
             </p>
             <p>
                 <label for="importanceChange">Important?</label>
-                <input type="checkbox" id="importanceChange">
-<!--                 <select name="importance" id="importance">
-                    <option name="option" value="important">Important</option>
-                    <option name="option" value="Not important">Not important</option>
-                </select> -->   
+                <input type="checkbox" id="importanceChange">  
             </p>
             <div id="formButtons">
                 <button value="cancel" id="closeChangeButton" formmethod="dialog">Close</button>
@@ -108,8 +100,36 @@
         </dialog>
       </div>
 
+<!-- project change popup window -->
+        <div id="popupButtonChangeProject">
+            <input type="submit" id="popupChangeProject" value="Change project"></input>
+        </div>
+        <dialog id="dialogChangeProject">
+        <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
+        <form id="formProjectChange" method="dialog"> 
+            <p>
+                <label for="titleChange">Title</label>
+                <br>
+                <input type="text" id="titleChange" min="1"  
+                title="Must contain at least 1 letter" required />
+            </p>
+            <p>
+                <label for="descriptionChange">Description</label>
+                <br>
+                <input type="text" id="descriptionChange" min="1"  
+                title="Must contain at least 1 letter" required />
+            </p>
+            <div id="formProjectChangeButtons">
+                 <button value="cancel" id="closeProjectChangeButton" formmethod="dialog">Close</button>
+                 <input type="submit" id="projectChangeButton" value="Update project"></input>
+            </div>
+        </form>
+        </dialog>
+      </div>
+
     <button id="deleteToDo">delete todo</button>
-    <!-- <button id="changeToDo">change todo</button>   -->     
+    <button id="deleteProject">delete project</button>
+
         </div>
 
     <div id="mainDisplay"></div>
