@@ -75,9 +75,25 @@ export default function addToDo() {
     const newToDo = new ToDo(text, date, importance);
     newToDo.createToDo();
     defaultToDoArr.push(newToDo);
-    console.log("added new todo:", newToDo);
-    console.log("in:", defaultToDoArr);
-  });
+
+    //DOM elements
+    const mainDisplay = document.getElementById("mainDisplay");
+    let todoContainer = document.createElement("div");
+    todoContainer.classList.add("todoContainer");
+    todoContainer.textContent = `${newToDo.text} date:${newToDo.date}`;
+    if (newToDo.importance === true) {
+        todoContainer.textContent = `${newToDo.text} date:${newToDo.date} important`;;
+    };
+    
+    mainDisplay.appendChild(todoContainer);
+    
+
+    //testing pushing into a project with id 0
+/*     let projectId = projects.find((project) => project.id == 0);
+    projectId.arr.push(newToDo); */
+    console.log("added new todo:", newToDo, "in", defaultToDoArr);
+/*     console.log("in:", projectId);
+ */  });
 }
 
 

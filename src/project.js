@@ -1,13 +1,13 @@
 export const projects = [
-    [
         {
         title: "default project",
         description: "just a default testing project",
-        }
-    ],
+        id: 0,
+        arr: [],
+        },
 ];
 
-let projectIdCounter = 0;
+let projectIdCounter = 1;
 
 export default class Project {
     constructor(title, description, id, arr) {

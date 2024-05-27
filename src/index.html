@@ -8,18 +8,15 @@
   <body>
     <header></header>
 
-    <div id="main">
-
-        <div id="sidebar">    
-         <div id="todoDisplay">
-
+<div id="main">
+<div id="sidebar">
 <!-- todo popup window -->
-        <div id="popupButtonContainer">
-            <input type="submit" id="formPopup" value="New todo"></input>
-        </div>
-        <dialog id="dialog">
-        <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
-        <form id="form" method="dialog" onsubmit="return false"> 
+<div id="popupButtonContainer">
+    <input type="submit" id="formPopup" value="New todo"></input>
+</div>
+<dialog id="dialog">
+    <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
+    <form id="form" method="dialog" onsubmit="return false"> 
             <p>
                 <label for="text">Text</label>
                 <br>
@@ -39,14 +36,12 @@
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
                 <input type="submit" id="todoButton" value="Add ToDo"></input>
             </div>
-        </form>
-        </dialog>
-      </div>
-
+    </form>
+</dialog>
 <!-- project popup window -->
-        <div id="popupButtonProjectContainer">
-            <input type="submit" id="formProjectPopup" value="New project"></input>
-        </div>
+<div id="popupButtonProjectContainer">
+    <input type="submit" id="formProjectPopup" value="New project"></input>
+</div>
         <dialog id="dialogProject">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formProject" method="dialog"> 
@@ -67,13 +62,11 @@
                  <input type="submit" id="projectButton" value="Add project"></input>
             </div>
         </form>
-        </dialog>
-    </div>
-
+</dialog>
 <!-- todo change popup window -->
-        <div id="popupButtonChangeToDo">
-            <input type="submit" id="formPopupChange" value="Change todo"></input>
-        </div>
+<div id="popupButtonChangeToDo">
+    <input type="submit" id="formPopupChange" value="Change todo"></input>
+</div>
         <dialog id="dialogChange">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formChange" method="dialog" onsubmit="return false"> 
@@ -97,13 +90,11 @@
                 <input type="submit" id="todoChangeButton" value="Change ToDo"></input>
             </div>
         </form>
-        </dialog>
-      </div>
-
+</dialog>
 <!-- project change popup window -->
-        <div id="popupButtonChangeProject">
-            <input type="submit" id="popupChangeProject" value="Change project"></input>
-        </div>
+<div id="popupButtonChangeProject">
+    <input type="submit" id="popupChangeProject" value="Change project"></input>
+</div>
         <dialog id="dialogChangeProject">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formProjectChange" method="dialog"> 
@@ -125,16 +116,16 @@
             </div>
         </form>
         </dialog>
-      </div>
 
-    <button id="deleteToDo">delete todo</button>
-    <button id="deleteProject">delete project</button>
+<button id="deleteToDo">delete todo</button>
+<button id="deleteProject">delete project</button>
 
-        </div>
+</div> 
+</div> 
 
-    <div id="mainDisplay"></div>
+<div id="mainDisplay">
+</div>
 
-    <footer></footer>
-
-  </body>
+<footer></footer>
+</body>
 </html>
