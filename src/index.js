@@ -1,4 +1,4 @@
-import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, deleteToDo, updateToDo, dialogChangeToDo, closeChangeDialog, closeProjectDialog, changeProject, dialogChangeProject, deleteProject }  from "./dom.js";
+import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, deleteToDo, updateToDo, closeChangeDialog, closeProjectDialog, changeProject, dialogChangeProject, deleteProject }  from "./dom.js";
 import { projects }  from "./project.js";
 import { defaultToDoArr } from "./todo.js";
 
@@ -11,9 +11,8 @@ dialogToDo();
 addToDo();
 deleteToDo();
 
-dialogChangeToDo();
-updateToDo();
-closeChangeDialog();
+/* updateToDo();
+ */closeChangeDialog();
 
 //show project window
 dialogProject();

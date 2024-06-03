@@ -11,14 +11,6 @@ export function dialogToDo() {
     });
 }
 
-export function dialogChangeToDo() {
-    const showChangeWindow = document.getElementById("formPopupChange");
-    const dialogChange = document.getElementById("dialogChange");
-    showChangeWindow.addEventListener("click", () => {
-        dialogChange.showModal();
-    });
-}
-
 //new project popup window
 export function dialogProject() {
     const showFormProjectWindow = document.getElementById("formProjectPopup");
@@ -67,6 +59,9 @@ export function closeChangeProjectDialog() {
     });
 }
 
+//making it global to use inside addTodo function
+let todoId;
+
 //add new todo
 export default function addToDo() {
   const todoButton = document.getElementById("todoButton");
@@ -79,34 +74,77 @@ export default function addToDo() {
     //DOM elements
     const mainDisplay = document.getElementById("mainDisplay");
     let todoContainer = document.createElement("div");
-    todoContainer.classList.add("todoContainer");
+    todoContainer.id = newToDo.id;
     todoContainer.textContent = `${newToDo.text} date:${newToDo.date}`;
     if (newToDo.importance === true) {
-        todoContainer.textContent = `${newToDo.text} date:${newToDo.date} important`;;
+        todoContainer.textContent = `${newToDo.text} date:${newToDo.date} important`;
     };
-    
+    //change todo
+    let todoChangeButton = document.createElement("input");
+    todoChangeButton.type = "submit";
+    todoChangeButton.id = "formPopupChange";
+    todoChangeButton.value = "Change";
+
+    todoContainer.appendChild(todoChangeButton);
     mainDisplay.appendChild(todoContainer);
-    
+
+
+
+    const dialogChange = document.getElementById("dialogChange");
+        todoChangeButton.addEventListener("click", (todo) => {
+            dialogChange.showModal();
+            //get id of clicked todo
+            todoId = todo.currentTarget.parentNode.id;
+        });
+
+    const changeToDoButton = document.getElementById("todoChangeButton");
+        changeToDoButton.addEventListener("click", () => {
+  
+            //pass object with that id to change todo func
+            changeToDo(todoId);
+            let changedTodo = defaultToDoArr.find((todo) => todo.id == todoId);
+            let changedContainer = document.getElementById(todoId);           
+
+            changedContainer.textContent = `${changedTodo.text} date:${changedTodo.date}`;
+            if (changedTodo.importance === true) {
+                changedContainer.textContent = `${changedTodo.text} date:${changedTodo.date} important`;
+            };
+            //keep change button
+            /* changedContainer.appendChild(todoChangeButton);
+            todoContainer.appendChild(todoChangeButton);
+            mainDisplay.appendChild(todoContainer);
+            mainDisplay.appendChild(changedContainer); */
+
+            console.log(`changed todo with id ${todoId}`, changedTodo,
+            "in", defaultToDoArr);  
+    });
 
     //testing pushing into a project with id 0
 /*     let projectId = projects.find((project) => project.id == 0);
     projectId.arr.push(newToDo); */
+    
     console.log("added new todo:", newToDo, "in", defaultToDoArr);
-/*     console.log("in:", projectId);
- */  });
+   });
 }
 
-
-export function updateToDo() {
+/* export function updateToDo() {
     const changeToDoButton = document.getElementById("todoChangeButton");
 
     changeToDoButton.addEventListener("click", () => {
-        const toChangeId = defaultToDoArr.find((todo) => todo.id == 1);
-        changeToDo(toChangeId);
-        console.log(`changed todo with id ${toChangeId.id}`, toChangeId);
-        console.log("todo default array", defaultToDoArr);
+        changeToDo(todo);
+        //const toChangeId = defaultToDoArr.find((todo) => todo.id == 1);
+        //changeToDo(todo); 
+        todoContainer.textContent = `${todo.text} date:${todo.date}`;
+        if (todo.importance === true) {
+            todoContainer.textContent = `${todo.text} date:${todo.date} important`;;
+        };
+
+        todoContainer.appendChild(todoChangeButton);
+        console.log(`changed todo with id ${defaultToDoArr[i].id}`, defaultToDoArr[i], 
+        "in", defaultToDoArr);
    });
-}
+} */
+
 
 export function deleteToDo() {
     const deleteToDoButton = document.getElementById("deleteToDo");

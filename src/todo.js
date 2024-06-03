@@ -1,25 +1,6 @@
-export const defaultToDoArr = [
-    {
-        text: "1st text",
-        date: "12-05-2024",
-        importance: true,
-        id: 0,
-    },
-    {
-        text: "2nd text",
-        date: "17-05-2024",
-        importance: true,
-        id: 1,
-    },
-    {
-        text: "3rd text",
-        date: "02-05-2024",
-        importance: false,
-        id: 2,
-    },
-];
+export const defaultToDoArr = [];
 
-let idCounter = 3;
+let idCounter = 0;
 
 export default class ToDo {
   constructor(text, date, importance, id) {
@@ -48,13 +29,14 @@ export default class ToDo {
   } */
 }
 
+export function changeToDo(todoId) {
+  let toChangeId = defaultToDoArr.find((todo) => todo.id == todoId);
 
-export function changeToDo(object) {
-    //change current todo text, date and importance
-  object.text = document.getElementById("textChange").value;
-  object.date = document.getElementById("dateChange").value;
-  object.importance = document.getElementById("importanceChange").checked;
-    //id stays the same
+  //change current todo text, date and importance
+  toChangeId.text = document.getElementById("textChange").value;
+  toChangeId.date = document.getElementById("dateChange").value;
+  toChangeId.importance = document.getElementById("importanceChange").checked;
+
 }
 
 export function removeToDo(object) {

@@ -64,9 +64,9 @@
         </form>
 </dialog>
 <!-- todo change popup window -->
-<div id="popupButtonChangeToDo">
+<!-- <div id="popupButtonChangeToDo">
     <input type="submit" id="formPopupChange" value="Change todo"></input>
-</div>
+</div> -->
         <dialog id="dialogChange">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formChange" method="dialog" onsubmit="return false"> 
@@ -85,7 +85,7 @@
                 <label for="importanceChange">Important?</label>
                 <input type="checkbox" id="importanceChange">  
             </p>
-            <div id="formButtons">
+            <div id="formButtonsChange">
                 <button value="cancel" id="closeChangeButton" formmethod="dialog">Close</button>
                 <input type="submit" id="todoChangeButton" value="Change ToDo"></input>
             </div>
