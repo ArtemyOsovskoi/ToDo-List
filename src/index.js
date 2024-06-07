@@ -11,8 +11,8 @@ dialogToDo();
 addToDo();
 deleteToDo();
 
-/* updateToDo();
- */closeChangeDialog();
+//updateToDo();
+closeChangeDialog();
 
 //show project window
 dialogProject();

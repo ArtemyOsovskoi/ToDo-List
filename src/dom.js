@@ -74,22 +74,37 @@ export default function addToDo() {
     //DOM elements
     const mainDisplay = document.getElementById("mainDisplay");
     let todoContainer = document.createElement("div");
+    let todoText = document.createElement("p");
+    let todoDate = document.createElement("p");
+    let todoImportance = document.createElement("p");
+
     todoContainer.id = newToDo.id;
-    todoContainer.textContent = `${newToDo.text} date:${newToDo.date}`;
+    todoText.innerText = newToDo.text;
+    todoDate.innerText = newToDo.date;
+    todoImportance.innerText = "Important";
+/*     todoContainer.textContent = `${newToDo.text} date:${newToDo.date}`;
     if (newToDo.importance === true) {
         todoContainer.textContent = `${newToDo.text} date:${newToDo.date} important`;
-    };
-    //change todo
+    }; */
     let todoChangeButton = document.createElement("input");
     todoChangeButton.type = "submit";
     todoChangeButton.id = "formPopupChange";
     todoChangeButton.value = "Change";
 
+    todoContainer.appendChild(todoText);
+    todoContainer.appendChild(todoDate);
+    todoContainer.appendChild(todoImportance);
+
+    if (newToDo.importance === true) {
+        todoImportance.style.visibility = "visible";
+    } else {
+        todoImportance.style.visibility = "hidden";
+    }
+
     todoContainer.appendChild(todoChangeButton);
     mainDisplay.appendChild(todoContainer);
 
-
-
+    //change todo
     const dialogChange = document.getElementById("dialogChange");
         todoChangeButton.addEventListener("click", (todo) => {
             dialogChange.showModal();
@@ -99,21 +114,39 @@ export default function addToDo() {
 
     const changeToDoButton = document.getElementById("todoChangeButton");
         changeToDoButton.addEventListener("click", () => {
-  
-            //pass object with that id to change todo func
             changeToDo(todoId);
             let changedTodo = defaultToDoArr.find((todo) => todo.id == todoId);
             let changedContainer = document.getElementById(todoId);           
+            let changedText = changedContainer.childNodes[0];
+            let changedDate = changedContainer.childNodes[1];
+            let changedImportance = changedContainer.childNodes[2];
+            //const importanceToggle = document.getElementById("importanceChange");
 
-            changedContainer.textContent = `${changedTodo.text} date:${changedTodo.date}`;
+            changedText.innerText = changedTodo.text;
+            changedDate.innerText = changedTodo.date;
+            /* if (changedTodo.importance === true) {
+                changedImportance.innerText = "Important";
+            }  else if (changedTodo.importance === false) {
+                changedImportance.remove();
+            }; */
             if (changedTodo.importance === true) {
-                changedContainer.textContent = `${changedTodo.text} date:${changedTodo.date} important`;
+                changedImportance.style.visibility = "visible";
+            } else {
+                changedImportance.style.visibility = "hidden";
             };
-            //keep change button
-            /* changedContainer.appendChild(todoChangeButton);
-            todoContainer.appendChild(todoChangeButton);
-            mainDisplay.appendChild(todoContainer);
+
+            /* changedContainer.appendChild(changedText);
+            changedContainer.appendChild(changedDate);
+            changedContainer.appendChild(todoChangeButton);
             mainDisplay.appendChild(changedContainer); */
+
+/*             changedContainer.innerText = `${changedTodo.text} date:${changedTodo.date}`;
+            if (changedTodo.importance === true) {
+                changedContainer.innerText = `${changedTodo.text} date:${changedTodo.date} important`;
+            }; */
+            //keep change button
+            //
+            /* changedContainer.appendChild(todoChangeButton); */
 
             console.log(`changed todo with id ${todoId}`, changedTodo,
             "in", defaultToDoArr);  
