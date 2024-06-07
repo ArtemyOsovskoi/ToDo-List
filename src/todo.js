@@ -39,8 +39,10 @@ export function changeToDo(todoId) {
 
 }
 
-export function removeToDo(object) {
+export function removeToDo(deleteId) {
+    const toRemoveId = defaultToDoArr.find((todo) => todo.id == deleteId);
+
   /* defaultToDoArr.splice(defaultToDoArr.indexOf(object), 1); */
-  defaultToDoArr.splice(defaultToDoArr.indexOf(object), 1);
+  defaultToDoArr.splice(defaultToDoArr.indexOf(toRemoveId), 1);
 /* items.splice(items.findIndex(i => i.id === "abc"), 1) */
 }

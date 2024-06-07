@@ -59,8 +59,9 @@ export function closeChangeProjectDialog() {
     });
 }
 
-//making it global to use inside addTodo function
+//making it global to use inside addTodo and deleteToDO function
 let todoId;
+let deleteId;
 
 //add new todo
 export default function addToDo() {
@@ -82,15 +83,15 @@ export default function addToDo() {
     todoText.innerText = newToDo.text;
     todoDate.innerText = newToDo.date;
     todoImportance.innerText = "Important";
-/*     todoContainer.textContent = `${newToDo.text} date:${newToDo.date}`;
-    if (newToDo.importance === true) {
-        todoContainer.textContent = `${newToDo.text} date:${newToDo.date} important`;
-    }; */
+
     let todoChangeButton = document.createElement("input");
     todoChangeButton.type = "submit";
     todoChangeButton.id = "formPopupChange";
     todoChangeButton.value = "Change";
 
+    let todoDeleteButton = document.createElement("button");
+    todoDeleteButton.id = "deleteToDo";
+    todoDeleteButton.textContent = "Delete"
     todoContainer.appendChild(todoText);
     todoContainer.appendChild(todoDate);
     todoContainer.appendChild(todoImportance);
@@ -102,6 +103,7 @@ export default function addToDo() {
     }
 
     todoContainer.appendChild(todoChangeButton);
+    todoContainer.appendChild(todoDeleteButton);
     mainDisplay.appendChild(todoContainer);
 
     //change todo
@@ -120,74 +122,37 @@ export default function addToDo() {
             let changedText = changedContainer.childNodes[0];
             let changedDate = changedContainer.childNodes[1];
             let changedImportance = changedContainer.childNodes[2];
-            //const importanceToggle = document.getElementById("importanceChange");
 
             changedText.innerText = changedTodo.text;
             changedDate.innerText = changedTodo.date;
-            /* if (changedTodo.importance === true) {
-                changedImportance.innerText = "Important";
-            }  else if (changedTodo.importance === false) {
-                changedImportance.remove();
-            }; */
+
             if (changedTodo.importance === true) {
                 changedImportance.style.visibility = "visible";
             } else {
                 changedImportance.style.visibility = "hidden";
             };
 
-            /* changedContainer.appendChild(changedText);
-            changedContainer.appendChild(changedDate);
-            changedContainer.appendChild(todoChangeButton);
-            mainDisplay.appendChild(changedContainer); */
-
-/*             changedContainer.innerText = `${changedTodo.text} date:${changedTodo.date}`;
-            if (changedTodo.importance === true) {
-                changedContainer.innerText = `${changedTodo.text} date:${changedTodo.date} important`;
-            }; */
-            //keep change button
-            //
-            /* changedContainer.appendChild(todoChangeButton); */
-
             console.log(`changed todo with id ${todoId}`, changedTodo,
             "in", defaultToDoArr);  
     });
 
-    //testing pushing into a project with id 0
-/*     let projectId = projects.find((project) => project.id == 0);
-    projectId.arr.push(newToDo); */
+    //delete todo
+    //const deleteToDoButton = document.getElementById("deleteToDo");
+    todoDeleteButton.addEventListener("click", (todo) => {
+        deleteId = todo.currentTarget.parentNode.id;
+        removeToDo(deleteId);
+        todo.currentTarget.closest("div").remove();
+        console.log(`deleted todo with id ${deleteId} in`, defaultToDoArr);
+    })
     
     console.log("added new todo:", newToDo, "in", defaultToDoArr);
    });
 }
 
-/* export function updateToDo() {
-    const changeToDoButton = document.getElementById("todoChangeButton");
 
-    changeToDoButton.addEventListener("click", () => {
-        changeToDo(todo);
-        //const toChangeId = defaultToDoArr.find((todo) => todo.id == 1);
-        //changeToDo(todo); 
-        todoContainer.textContent = `${todo.text} date:${todo.date}`;
-        if (todo.importance === true) {
-            todoContainer.textContent = `${todo.text} date:${todo.date} important`;;
-        };
+/* export function deleteToDo() {
 
-        todoContainer.appendChild(todoChangeButton);
-        console.log(`changed todo with id ${defaultToDoArr[i].id}`, defaultToDoArr[i], 
-        "in", defaultToDoArr);
-   });
-} */
-
-
-export function deleteToDo() {
-    const deleteToDoButton = document.getElementById("deleteToDo");
-
-    deleteToDoButton.addEventListener("click", () => {
-        const toRemoveId = defaultToDoArr.find((todo) => todo.id == 3);
-        removeToDo(toRemoveId);
-        console.log(`deleted todo with id ${toRemoveId.id}`, defaultToDoArr);
-    })
-}  
+}  */ 
 
 //add new project
 export function addProject() {
