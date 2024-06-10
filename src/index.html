@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo List</title>
-  </head>
-  <body>
-    <header></header>
+</head>
+
+<body>
+
+<header>
+        <nav id="nav">
+        <a class="header-nav-link" id="generalTodo" href="javascript:void(0);">General</a>
+        <a class="header-nav-link" id="todayTodo" href="javascript:void(0);">Today</a>
+        <a class="header-nav-link" id="thisWeekTodo" href="javascript:void(0);">This Week</a>
+        </nav>
+</header>
 
 <div id="main">
 <div id="sidebar">
@@ -32,6 +40,11 @@
                 <label for="importance">Important?</label>
                 <input type="checkbox" id="importance">
             </p>
+            <p>
+                <label for="project">Project</label>
+                <input type="text" list="projectsList" id="projectInput" />
+                <datalist id="projectsList"></datalist>
+            </p>
             <div id="formButtons">
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
                 <input type="submit" id="todoButton" value="Add ToDo"></input>
@@ -49,12 +62,6 @@
                 <label for="title">Title</label>
                 <br>
                 <input type="text" id="title" min="1"  
-                title="Must contain at least 1 letter" required />
-            </p>
-            <p>
-                <label for="description">Description</label>
-                <br>
-                <input type="text" id="description" min="1"  
                 title="Must contain at least 1 letter" required />
             </p>
             <div id="formProjectButtons">
@@ -124,6 +131,7 @@
 </div> 
 
 <div id="mainDisplay">
+
 </div>
 
 <footer></footer>

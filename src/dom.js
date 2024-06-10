@@ -70,7 +70,13 @@ export default function addToDo() {
   todoButton.addEventListener("click", () => {
     const newToDo = new ToDo(text, date, importance);
     newToDo.createToDo();
+
+    //default arr push (general)
     defaultToDoArr.push(newToDo);
+    //if project selected
+    const projectInput = document.getElementById("projectInput");
+    // if (get input value - what project title is sleected) {push into that project};
+    
 
     //DOM elements
     const mainDisplay = document.getElementById("mainDisplay");
@@ -137,7 +143,6 @@ export default function addToDo() {
     });
 
     //delete todo
-    //const deleteToDoButton = document.getElementById("deleteToDo");
     todoDeleteButton.addEventListener("click", (todo) => {
         deleteId = todo.currentTarget.parentNode.id;
         removeToDo(deleteId);
@@ -149,21 +154,38 @@ export default function addToDo() {
    });
 }
 
+function projectsData(arr) {
+    const projectsDataList = document.getElementById("projectsList");
 
-/* export function deleteToDo() {
-
-}  */ 
+    arr.forEach(project => {
+        let option = document.createElement("option");
+        option.innerText = project.title;
+        projectsDataList.appendChild(option);
+    });
+};
 
 //add new project
 export function addProject() {
-  const projectButton = document.getElementById("projectButton");
+  const projectButton = document.getElementById("projectButton")
 
   projectButton.addEventListener("click", () => {
-    const newProject = new Project(title, description);
+    const newProject = new Project(title);
     newProject.createProject();
     projects.push(newProject);
-    console.log("new project is made:", newProject);
-    console.log("projects:", projects);
+    projectsData(projects);
+
+    //DOM - create link for new project
+    let projectLink = document.createElement("a");
+    projectLink.classList.add = "project-link";
+    projectLink.innerText = newProject.title;
+    projectLink.href = "javascript:void(0);";
+
+
+    const nav = document.getElementById("nav");
+    nav.appendChild(projectLink);
+    //wipe display and let create new todo inside new project
+
+    console.log("new project is made:", newProject,"in:", projects);  
   });
 }
 

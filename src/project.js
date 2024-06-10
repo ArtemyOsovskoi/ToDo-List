@@ -1,7 +1,6 @@
 export const projects = [
         {
         title: "default project",
-        description: "just a default testing project",
         id: 0,
         arr: [],
         },
@@ -10,16 +9,14 @@ export const projects = [
 let projectIdCounter = 1;
 
 export default class Project {
-    constructor(title, description, id, arr) {
+    constructor(title, id, arr) {
         this.title = title;
-        this.description = description;
         this.id = id;
         this.arr = arr;
     }
 
     createProject() {
         this.title = document.getElementById("title").value;
-        this.description = document.getElementById("description").value;
         this.id = projectIdCounter++; 
         this.arr = [];
     }
