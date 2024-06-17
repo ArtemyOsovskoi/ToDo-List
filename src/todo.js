@@ -1,4 +1,6 @@
-export const defaultToDoArr = [];
+import { projects } from "./project";
+
+export const general = [];
 
 let idCounter = 0;
 
@@ -17,32 +19,28 @@ export default class ToDo {
   this.importance = document.getElementById("importance").checked;
   this.id = idCounter++;
   }
-
-  doneToDo() {
-    //set todo as done - same as delete basically?
-  }
-
-/*   deleteToDo() {
-    this.text = null;
-    this.date = null;
-    this.importance = null;
-  } */
-}
+};
 
 export function changeToDo(todoId) {
-  let toChangeId = defaultToDoArr.find((todo) => todo.id == todoId);
+  let toChangeId = general.find((todo) => todo.id == todoId);
+  let toChangeIdProject = projects.find(project => project.arr.find(todo => todo.id == todoId));
 
   //change current todo text, date and importance
   toChangeId.text = document.getElementById("textChange").value;
   toChangeId.date = document.getElementById("dateChange").value;
   toChangeId.importance = document.getElementById("importanceChange").checked;
 
-}
+  toChangeIdProject.arr.text = document.getElementById("textChange").value;
+  toChangeIdProject.arr.date = document.getElementById("dateChange").value;
+  toChangeIdProject.arr.importance = document.getElementById("importanceChange").checked;
+
+};
 
 export function removeToDo(deleteId) {
-    const toRemoveId = defaultToDoArr.find((todo) => todo.id == deleteId);
+  const toRemoveId = general.find((todo) => todo.id == deleteId);
+  general.splice(general.indexOf(toRemoveId), 1);
+  //find a project with todo to delete it
+  const toRemoveProjectId = projects.find((project) => project.arr.find((todo) => todo.id == deleteId));
+  toRemoveProjectId.arr.splice(toRemoveProjectId.arr.indexOf(toRemoveProjectId), 1);
 
-  /* defaultToDoArr.splice(defaultToDoArr.indexOf(object), 1); */
-  defaultToDoArr.splice(defaultToDoArr.indexOf(toRemoveId), 1);
-/* items.splice(items.findIndex(i => i.id === "abc"), 1) */
-}
+};

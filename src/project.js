@@ -6,7 +6,7 @@ export const projects = [
         },
 ];
 
-let projectIdCounter = 1;
+let projectIdCounter = 99;
 
 export default class Project {
     constructor(title, id, arr) {
@@ -22,14 +22,15 @@ export default class Project {
     }
 }
 
-export function changeProject(project) {
-  project.title = document.getElementById("titleChange").value;
-  project.description = document.getElementById("descriptionChange").value;
-    //id stays the same
+export function changeProject(projectId) {
+  let toChangeIdProject = projects.find((project) => project.id == projectId);
+  //let toChangeIdProject = projects.find(project => project.arr.find(todo => todo.id == todoId));
+  toChangeIdProject.title = document.getElementById("titleChange").value;
 }
 
-export function removeProject(project) {
-  projects.splice(projects.indexOf(project), 1);
-}
+export function removeProject(projectId) {
+  const toRemoveProjectId = projects.find((project) => project.id == projectId);
+  projects.splice(projects.indexOf(toRemoveProjectId), 1);
+};
 
 

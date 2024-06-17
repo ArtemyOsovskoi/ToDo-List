@@ -1,10 +1,11 @@
-import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog, changeProject, dialogChangeProject, deleteProject }  from "./dom.js";
+import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog }  from "./dom.js";
 import { projects }  from "./project.js";
-import { defaultToDoArr } from "./todo.js";
+import { general } from "./todo.js";
+//import { defaultToDoArr } from "./todo.js";
 
 console.log("index.js is working");
 console.log("default projects array:", projects);
-console.log("default todo array:", defaultToDoArr);
+console.log("general todo array:", general);
 
 //show dialog window
 dialogToDo();
@@ -16,8 +17,10 @@ closeChangeDialog();
 dialogProject();
 addProject();
 closeProjectDialog();
-dialogChangeProject();
-changeProject();
-deleteProject();
+//dialogChangeProject();
+//changeProject();
+//deleteProject();
 //close todo window
 closeDialog();
+
+

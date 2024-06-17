@@ -43,7 +43,9 @@
             <p>
                 <label for="project">Project</label>
                 <input type="text" list="projectsList" id="projectInput" />
-                <datalist id="projectsList"></datalist>
+                <datalist id="projectsList">
+                    <option value="General"></option>
+                </datalist>
             </p>
             <div id="formButtons">
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
@@ -99,9 +101,9 @@
         </form>
 </dialog>
 <!-- project change popup window -->
-<div id="popupButtonChangeProject">
+<!-- <div id="popupButtonChangeProject">
     <input type="submit" id="popupChangeProject" value="Change project"></input>
-</div>
+</div> -->
         <dialog id="dialogChangeProject">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formProjectChange" method="dialog"> 
@@ -111,21 +113,12 @@
                 <input type="text" id="titleChange" min="1"  
                 title="Must contain at least 1 letter" required />
             </p>
-            <p>
-                <label for="descriptionChange">Description</label>
-                <br>
-                <input type="text" id="descriptionChange" min="1"  
-                title="Must contain at least 1 letter" required />
-            </p>
             <div id="formProjectChangeButtons">
                  <button value="cancel" id="closeProjectChangeButton" formmethod="dialog">Close</button>
-                 <input type="submit" id="projectChangeButton" value="Update project"></input>
+                 <input type="submit" id="projectChangeButton" value="Change project"></input>
             </div>
         </form>
         </dialog>
-
-<!-- <button id="deleteToDo">delete todo</button> -->
-<button id="deleteProject">delete project</button>
 
 </div> 
 </div> 
