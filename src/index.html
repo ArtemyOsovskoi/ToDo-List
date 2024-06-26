@@ -8,15 +8,19 @@
 
 <body>
 
-<header>
-        <nav id="nav">
-        <a class="header-nav-link" id="generalTodo" href="javascript:void(0);">General</a>
-        <a class="header-nav-link" id="todayTodo" href="javascript:void(0);">Today</a>
-        </nav>
+<header id="header">
+        <img id="logo-icon" src="/src/icon_logo_todo.svg" />
+        <p>todo</p>
 </header>
 
 <div id="main">
 <div id="sidebar">
+        <nav id="nav">
+        <a class="header-nav-link" id="generalTodo" href="javascript:void(0)">General</a>
+        <br>
+        <a class="header-nav-link" id="todayTodo" href="javascript:void(0)">Today</a>
+        <div id="myProjects">My Projects<p id="projectsCounter"></p></div>
+        </nav>
 <!-- todo popup window -->
 <div id="popupButtonContainer">
     <input type="submit" id="formPopup" value="New todo"></input>
@@ -114,12 +118,15 @@
         </dialog>
 
 </div> 
-</div> 
 
 <div id="mainDisplay">
-
+    <div class="todo-container"><p>TESTING TESTING BUTTONS NOT WORKING</p><p>2024-06-13</p><p style="visibility: hidden;">Important</p><p style="visibility: hidden;"></p><input type="submit" id="formPopupChange" value="Change"><button id="deleteToDo">Delete</button>
+    </div>
 </div>
+</div> 
 
-<footer></footer>
+
+
+<footer id="footer">hi its footer o/</footer>
 </body>
 </html>

@@ -74,7 +74,6 @@ export default function addToDo() {
 
     if (projectValue != "General" && projectValue === filteredProject.title) {
         filteredProject.arr.push(newToDo);
-        console.log("added todo in Project", filteredProject, projects);
     }; 
 
     //DOM elements
@@ -146,9 +145,6 @@ export default function addToDo() {
             } else {
                 changedImportance.style.visibility = "hidden";
             };
-
-            console.log(`changed todo with id ${todoId}`, changedTodo,
-            "in", general);
     });
 
     //delete todo
@@ -156,12 +152,13 @@ export default function addToDo() {
         deleteId = todo.currentTarget.parentNode.id;
         removeToDo(deleteId);
         todo.currentTarget.closest("div").remove();
-        console.log(`deleted todo with id ${deleteId} in`, general);
     })
-    
-    //console.log("added new todo:", newToDo, "in", general);
    });
 }
+
+let myProjectsHeader = document.getElementById("myProjects");
+myProjectsHeader.style.visibility = "hidden";
+let projectsCounter = document.getElementById("projectsCounter");
 
 let newProject;
 let linkId;
@@ -182,6 +179,10 @@ export function addProject() {
     projectLink.classList.add("project-link");
     projectLink.innerText = newProject.title;
     projectLink.href = "javascript:void(0);";
+
+    if (myProjectsHeader.style.visibility = "hidden") {myProjectsHeader.style.visibility = "visible";}
+    
+    projectsCounter.innerText = projects.length - 1;
 
     const projectsDataList = document.getElementById("projectsList");
     let option = document.createElement("option");
@@ -268,9 +269,6 @@ export function addProject() {
                     } else {
                         changedImportance.style.visibility = "hidden";
                     };
-
-                    console.log(`changed todo with id ${todoId}`, changedTodo,
-                    "in", general);
             });
 
             //delete todo
@@ -278,12 +276,73 @@ export function addProject() {
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
-                console.log(`deleted todo with id ${deleteId} in`, general);
             })
         });
     });
 
-    let generalToDo = document.getElementById("generalTodo");
+    let deleteProjectButton = document.createElement("button");
+    deleteProjectButton.classList.add("delete-project-btn");
+    deleteProjectButton.innerText = "Delete project";
+
+    deleteProjectButton.addEventListener("click", (project) => {
+        deleteProjectId = project.currentTarget.parentNode.id;
+        const findProjectId = projects.find((project) => project.id == deleteProjectId);
+        findProjectId.arr.forEach(todo => {
+            let getTodoContainer = document.getElementById(todo.id);
+            getTodoContainer.remove();
+        });
+
+        removeProject(deleteProjectId);
+        projectsCounter.innerText = projects.length - 1;
+        if (projectsCounter.innerText == 0) {
+            myProjectsHeader.style.visibility = "hidden";
+        };
+        project.currentTarget.closest("div").remove();
+    });
+
+    const projectChangePopupButton = document.createElement("button");
+    projectChangePopupButton.id = "projectChangePopupButton";
+    projectChangePopupButton.innerText = "Change project";
+
+    const dialogProjectChange = document.getElementById("dialogChangeProject");
+    projectChangePopupButton.addEventListener("click", (project) => {
+        dialogProjectChange.showModal();
+        changeProjectId = project.currentTarget.parentNode.id;
+    });
+
+    const changeProjectButton = document.getElementById("projectChangeButton");
+    changeProjectButton.addEventListener("click", () => {
+        changeProject(changeProjectId);
+        let changedProject = projects.find((project) => project.id == changeProjectId);
+        let changedProjectContainer = document.getElementById(changeProjectId);
+        let changedTitle = changedProjectContainer.childNodes[0];
+        changedTitle.innerText = changedProject.title;
+
+        let getOptions = Array.from(projectsDataList.children);
+        let changedOption = getOptions.find((option) => parseInt(option.id) == changeProjectId);
+        changedOption.value = changedProject.title;
+        changedOption.innerText = changedProject.title;
+
+        //change todos project title which changed
+        changedProject.arr.forEach(todo => {
+            todo.projectTitle = changedProject.title;
+        });
+
+        let changedProjectTitle = changedProject.arr.find((todo) => todo.projectTitle == changedProject.title);
+        let getTodoContainer = document.getElementById(changedProjectTitle.id);
+        getTodoContainer.childNodes[3].innerText = changedProject.title;
+   });
+
+    const nav = document.getElementById("nav");
+    projectContainer.appendChild(projectLink);
+    projectContainer.appendChild(deleteProjectButton);
+    projectContainer.appendChild(projectChangePopupButton);
+    nav.appendChild(projectContainer);
+  });
+};
+
+export function generalTodo() {
+let generalToDo = document.getElementById("generalTodo");
     generalToDo.addEventListener("click", () => {
         while (mainDisplay.hasChildNodes()) {
             mainDisplay.removeChild(mainDisplay.firstChild);
@@ -358,9 +417,6 @@ export function addProject() {
                     } else {
                         changedImportance.style.visibility = "hidden";
                     };
-
-                    console.log(`changed todo with id ${todoId}`, changedTodo,
-                    "in", general);
             });
 
             //delete todo
@@ -368,85 +424,20 @@ export function addProject() {
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
-                console.log(`deleted todo with id ${deleteId} in`, general);
             })
         });
     });
-
-    let deleteProjectButton = document.createElement("button");
-    deleteProjectButton.classList.add("delete-project-btn");
-    deleteProjectButton.innerText = "Delete project";
-
-    deleteProjectButton.addEventListener("click", (project) => {
-        deleteProjectId = project.currentTarget.parentNode.id;
-        const findProjectId = projects.find((project) => project.id == deleteProjectId);
-        findProjectId.arr.forEach(todo => {
-            let getTodoContainer = document.getElementById(todo.id);
-            getTodoContainer.remove();
-        });
-
-        removeProject(deleteProjectId);
-        project.currentTarget.closest("div").remove();
-
-        console.log("deleted project with ID", deleteProjectId, projects);
-    });
-
-    const projectChangePopupButton = document.createElement("button");
-    projectChangePopupButton.id = "projectChangePopupButton";
-    projectChangePopupButton.innerText = "Change project";
-
-    const dialogProjectChange = document.getElementById("dialogChangeProject");
-    projectChangePopupButton.addEventListener("click", (project) => {
-        dialogProjectChange.showModal();
-        changeProjectId = project.currentTarget.parentNode.id;
-    });
-
-    const changeProjectButton = document.getElementById("projectChangeButton");
-    changeProjectButton.addEventListener("click", () => {
-        changeProject(changeProjectId);
-        let changedProject = projects.find((project) => project.id == changeProjectId);
-        let changedProjectContainer = document.getElementById(changeProjectId);
-        let changedTitle = changedProjectContainer.childNodes[0];
-        changedTitle.innerText = changedProject.title;
-
-        let getOptions = Array.from(projectsDataList.children);
-        let changedOption = getOptions.find((option) => parseInt(option.id) == changeProjectId);
-        changedOption.value = changedProject.title;
-        changedOption.innerText = changedProject.title;
-
-        //change todos project title which changed
-        changedProject.arr.forEach(todo => {
-            todo.projectTitle = changedProject.title;
-        });
-
-        let changedProjectTitle = changedProject.arr.find((todo) => todo.projectTitle == changedProject.title);
-        let getTodoContainer = document.getElementById(changedProjectTitle.id);
-        getTodoContainer.childNodes[3].innerText = changedProject.title;
-
-        console.log(`updated project with id ${changeProjectId}`, projects);
-   });
-
-    const nav = document.getElementById("nav");
-    projectContainer.appendChild(projectLink);
-    projectContainer.appendChild(deleteProjectButton);
-    projectContainer.appendChild(projectChangePopupButton);
-    nav.appendChild(projectContainer);
-
-    console.log("new project is made:", newProject,"in:", projects);  
-  });
 };
+
 
 export function todayTodo() {
     let todayTodoLink = document.getElementById("todayTodo");
     todayTodoLink.addEventListener("click", () => {
-        console.log("today pressed");
         while (mainDisplay.hasChildNodes()) {
             mainDisplay.removeChild(mainDisplay.firstChild);
         };
         const date = new Date().toDateString();
-        console.log("today is", date);
         const todaysTodo = general.filter((todo) => new Date(todo.date + "T00:00:00").toDateString() == date);
-        console.log("todays todo:", todaysTodo);
         todaysTodo.forEach(todo => {
                 //todo DOM elements
             let todoContainer = document.createElement("div");
@@ -517,9 +508,6 @@ export function todayTodo() {
                     } else {
                         changedImportance.style.visibility = "hidden";
                     };
-
-                    console.log(`changed todo with id ${todoId}`, changedTodo,
-                    "in", general);
             });
 
             //delete todo
@@ -527,9 +515,7 @@ export function todayTodo() {
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
-                console.log(`deleted todo with id ${deleteId} in`, general);
             })
         });
-
     });
 };
