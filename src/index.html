@@ -12,7 +12,6 @@
         <nav id="nav">
         <a class="header-nav-link" id="generalTodo" href="javascript:void(0);">General</a>
         <a class="header-nav-link" id="todayTodo" href="javascript:void(0);">Today</a>
-        <a class="header-nav-link" id="thisWeekTodo" href="javascript:void(0);">This Week</a>
         </nav>
 </header>
 
@@ -44,7 +43,7 @@
                 <label for="projectInput">Project</label>
                 <input type="text" list="projectsList" id="projectInput" />
                 <datalist id="projectsList">
-                    <option value="General"></option>
+                    <option value="General"></option> 
                 </datalist>
             </p>
             <div id="formButtons">
@@ -73,9 +72,6 @@
         </form>
 </dialog>
 <!-- todo change popup window -->
-<!-- <div id="popupButtonChangeToDo">
-    <input type="submit" id="formPopupChange" value="Change todo"></input>
-</div> -->
         <dialog id="dialogChange">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formChange" method="dialog" onsubmit="return false"> 
@@ -101,9 +97,6 @@
         </form>
 </dialog>
 <!-- project change popup window -->
-<!-- <div id="popupButtonChangeProject">
-    <input type="submit" id="popupChangeProject" value="Change project"></input>
-</div> -->
         <dialog id="dialogChangeProject">
         <!-- workaround to add new objects to array and not let it keep refreshing (as it was before and it let me only add empty objects) -->
         <form id="formProjectChange" method="dialog"> 

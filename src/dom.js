@@ -64,15 +64,12 @@ export default function addToDo() {
   const todoButton = document.getElementById("todoButton");
 
   todoButton.addEventListener("click", () => {
-    //testing
     const projectValue = document.getElementById("projectInput").value;
 
     const newToDo = new ToDo(text, date, projectValue, importance);
     newToDo.createToDo();
     general.push(newToDo);
 
-    //general arr push (general)
-    //let projectInput = document.getElementById("projectInput");
     let filteredProject = projects.filter(project => project.title === projectInput.value)[0];
 
     if (projectValue != "General" && projectValue === filteredProject.title) {
@@ -92,7 +89,6 @@ export default function addToDo() {
     todoText.innerText = newToDo.text;
     todoDate.innerText = newToDo.date;
     todoImportance.innerText = "Important";
-    //todoProject.innerText = `Project: ${projectValue}`;
     if (projectValue == "General") {
         todoProject.style.visibility = "hidden";
     } else {
@@ -134,10 +130,8 @@ export default function addToDo() {
     const changeToDoButton = document.getElementById("todoChangeButton");
         changeToDoButton.addEventListener("click", () => {
             changeToDo(todoId);
-            //changeToDoProject(todoId);
 
             let changedTodo = general.find((todo) => todo.id == todoId);
-            //let changedTodoProject = newProject.arr.find((todo) => todo.id == todoId);
 
             let changedContainer = document.getElementById(todoId);           
             let changedText = changedContainer.childNodes[0];
@@ -146,10 +140,6 @@ export default function addToDo() {
 
             changedText.innerText = changedTodo.text;
             changedDate.innerText = changedTodo.date;
-
-            //changedText.innerText = changedTodoProject.text;
-            //changedDate.innerText = changedTodoProject.date;
-
 
             if (changedTodo.importance === true) {
                 changedImportance.style.visibility = "visible";
@@ -169,7 +159,7 @@ export default function addToDo() {
         console.log(`deleted todo with id ${deleteId} in`, general);
     })
     
-    console.log("added new todo:", newToDo, "in", general);
+    //console.log("added new todo:", newToDo, "in", general);
    });
 }
 
@@ -208,9 +198,7 @@ export function addProject() {
         //get which project is created
         linkId = project.currentTarget.parentNode.id;
         let linkProject = projects.find((project) => project.id == linkId);
-        //access to that projects array
-        // linkProject.arr
-        //display that array objects as DOM elements (todods)
+
         linkProject.arr.forEach(todo => {
         //todo DOM elements
             let todoContainer = document.createElement("div");
@@ -224,7 +212,6 @@ export function addProject() {
             todoText.innerText = todo.text;
             todoDate.innerText = todo.date;
             todoImportance.innerText = "Important";
-            //todoProject.innerText = `Project: ${todo.projectTitle}`;
             if (todo.projectTitle == "General") {
                 todoProject.style.visibility = "hidden";
             } else {
@@ -265,10 +252,8 @@ export function addProject() {
             const changeToDoButton = document.getElementById("todoChangeButton");
                 changeToDoButton.addEventListener("click", () => {
                     changeToDo(todoId);
-                    //changeToDoProject(todoId);
 
                     let changedTodo = general.find((todo) => todo.id == todoId);
-                    //let changedTodoProject = newProject.arr.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
                     let changedText = changedContainer.childNodes[0];
@@ -357,10 +342,8 @@ export function addProject() {
             const changeToDoButton = document.getElementById("todoChangeButton");
                 changeToDoButton.addEventListener("click", () => {
                     changeToDo(todoId);
-                    //changeToDoProject(todoId);
 
                     let changedTodo = general.find((todo) => todo.id == todoId);
-                    //let changedTodoProject = newProject.arr.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
                     let changedText = changedContainer.childNodes[0];
@@ -436,7 +419,6 @@ export function addProject() {
             todo.projectTitle = changedProject.title;
         });
 
-        //access todo container with node #3 (project title) = changedProject.title;
         let changedProjectTitle = changedProject.arr.find((todo) => todo.projectTitle == changedProject.title);
         let getTodoContainer = document.getElementById(changedProjectTitle.id);
         getTodoContainer.childNodes[3].innerText = changedProject.title;
@@ -445,7 +427,6 @@ export function addProject() {
    });
 
     const nav = document.getElementById("nav");
-    //nav.appendChild(projectLink);
     projectContainer.appendChild(projectLink);
     projectContainer.appendChild(deleteProjectButton);
     projectContainer.appendChild(projectChangePopupButton);
@@ -453,4 +434,102 @@ export function addProject() {
 
     console.log("new project is made:", newProject,"in:", projects);  
   });
+};
+
+export function todayTodo() {
+    let todayTodoLink = document.getElementById("todayTodo");
+    todayTodoLink.addEventListener("click", () => {
+        console.log("today pressed");
+        while (mainDisplay.hasChildNodes()) {
+            mainDisplay.removeChild(mainDisplay.firstChild);
+        };
+        const date = new Date().toDateString();
+        console.log("today is", date);
+        const todaysTodo = general.filter((todo) => new Date(todo.date + "T00:00:00").toDateString() == date);
+        console.log("todays todo:", todaysTodo);
+        todaysTodo.forEach(todo => {
+                //todo DOM elements
+            let todoContainer = document.createElement("div");
+            let todoText = document.createElement("p");
+            let todoDate = document.createElement("p");
+            let todoImportance = document.createElement("p");
+            let todoProject = document.createElement("p");
+
+            todoContainer.id = todo.id;
+            todoContainer.classList.add("todo-container");
+            todoText.innerText = todo.text;
+            todoDate.innerText = todo.date;
+            todoImportance.innerText = "Important";
+            
+            if (todo.projectTitle == "General") {
+                todoProject.style.visibility = "hidden";
+            } else {
+                todoProject.innerText = `Project: ${todo.projectTitle}`;
+            };
+
+            let todoChangeButton = document.createElement("input");
+            todoChangeButton.type = "submit";
+            todoChangeButton.id = "formPopupChange";
+            todoChangeButton.value = "Change";
+
+            let todoDeleteButton = document.createElement("button");
+            todoDeleteButton.id = "deleteToDo";
+            todoDeleteButton.textContent = "Delete"
+            todoContainer.appendChild(todoText);
+            todoContainer.appendChild(todoDate);
+            todoContainer.appendChild(todoImportance);
+            todoContainer.appendChild(todoProject);
+
+            if (todo.importance === true) {
+                todoImportance.style.visibility = "visible";
+            } else {
+                todoImportance.style.visibility = "hidden";
+            }
+
+            todoContainer.appendChild(todoChangeButton);
+            todoContainer.appendChild(todoDeleteButton);
+            mainDisplay.appendChild(todoContainer);
+
+            //change todo
+            const dialogChange = document.getElementById("dialogChange");
+                todoChangeButton.addEventListener("click", (todo) => {
+                    dialogChange.showModal();
+                    //get id of clicked todo
+                    todoId = todo.currentTarget.parentNode.id;
+                });
+
+            const changeToDoButton = document.getElementById("todoChangeButton");
+                changeToDoButton.addEventListener("click", () => {
+                    changeToDo(todoId);
+
+                    let changedTodo = general.find((todo) => todo.id == todoId);
+
+                    let changedContainer = document.getElementById(todoId);           
+                    let changedText = changedContainer.childNodes[0];
+                    let changedDate = changedContainer.childNodes[1];
+                    let changedImportance = changedContainer.childNodes[2];
+
+                    changedText.innerText = changedTodo.text;
+                    changedDate.innerText = changedTodo.date;
+
+                    if (changedTodo.importance === true) {
+                        changedImportance.style.visibility = "visible";
+                    } else {
+                        changedImportance.style.visibility = "hidden";
+                    };
+
+                    console.log(`changed todo with id ${todoId}`, changedTodo,
+                    "in", general);
+            });
+
+            //delete todo
+            todoDeleteButton.addEventListener("click", (todo) => {
+                deleteId = todo.currentTarget.parentNode.id;
+                removeToDo(deleteId);
+                todo.currentTarget.closest("div").remove();
+                console.log(`deleted todo with id ${deleteId} in`, general);
+            })
+        });
+
+    });
 };

@@ -32,7 +32,6 @@ export function changeProject(projectId) {
 export function removeProject(projectId) {
   const toRemoveProjectId = projects.find((project) => project.id == projectId);
   let filterGeneral = general.filter((todo) => todo.projectTitle != toRemoveProjectId.title);
-  //replace original general arr with filterGeneral
   general.length = 0;
   general.push.apply(general, filterGeneral);
   projects.splice(projects.indexOf(toRemoveProjectId), 1);

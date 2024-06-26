@@ -17,7 +17,6 @@ export default class ToDo {
   //take values from form input fields
   this.text = document.getElementById("text").value;
   this.date = document.getElementById("date").value;
-  /* this.projectTitle = document.getElementById("projectInput").value; */
   this.importance = document.getElementById("importance").checked;
   this.id = idCounter++;
   }
