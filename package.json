@@ -2,11 +2,11 @@
   "name": "todo-list",
   "version": "1.0.0",
   "description": "Simple ToDo list app: organise your tasks and create projects. Live: WIP # Overview This project is made with aim of practicing using solid principles, separate DOM and app logic, using webpack. # Problem Build a ToDo list app, user can add tasks, make new projects, set task date and priority, delete and edit tasks.  # Status Started 25.04.24 Finished WIP # Conclusion I learned:  WIP",
-  "private": true, 
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack" 
-},
+    "build": "webpack"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -14,5 +14,8 @@
     "html-webpack-plugin": "^5.6.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "date-fns": "^3.6.0"
   }
 }
