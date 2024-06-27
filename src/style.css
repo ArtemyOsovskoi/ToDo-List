@@ -5,26 +5,60 @@
 }
 
 html, body {
-    background-color: #f9f9f9;
+    background-color: #DDDDDD;
     height: 100%;
     display: flex;
     flex-direction: column;
 }
 
 #header {
-    background-color: lightslategrey;
     margin-bottom: 1rem;
-    padding: 1.6rem;
+    padding: 0.4rem;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222831;
 }
 
-#logo-icon{
-    height: 40px;
-    width: 40px;
+#logo-icon {
+    height: 50px;
+    width: 50px;
+    filter: invert(100%) sepia(0%) saturate(7142%) hue-rotate(298deg) brightness(110%) contrast(73%);
+}
+
+#menu-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+#menu-buttons input {
+    background-color: #222831;
+    color: #DDDDDD;
+    border: none;
+    padding: 0.6rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+#menu-buttons input:hover {
+    /* color:#F05454; */
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    background-color: #30475E;
+}
+
+#logo-title-container {
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #DDDDDD;
 }
 
 a {
     text-decoration: none;
+    color: #222831;
 }
 
 #myProjects {
@@ -38,28 +72,168 @@ a {
 }
 
 #main {
-    border: 1px solid black;
-    margin-bottom: 1rem;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
+    min-height: calc(100vh - 104px - 48px);
 }
 
 #sidebar {
+    padding: 0.6rem;
+    font-size: 0.8rem;
+    width: 180px;
+    min-width: 160px;
+    overflow: hidden;
+}
 
+#nav img {
+    height: 20px;
+    width: 20px;
+    filter: invert(11%) sepia(8%) saturate(1918%) hue-rotate(177deg) brightness(89%) contrast(87%);
+}
+
+#general-link-container, #today-link-container {
+    display: flex;
+    align-items: center;
+    /* padding: 0.2rem 0.4rem 0.2rem 0.4rem; */
+}
+
+#today-link-container {
+    margin-bottom: 0.6rem;
+}
+
+.project-container {
+    color: #222831;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    gap: 4px;
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break:break-all;
+    overflow: hidden;
+}
+
+.project-container a {
+    overflow: hidden;
+    width: 100px;
+}
+
+.project-container a:hover {
+    color:#F05454;
+    cursor: pointer;
+}
+
+.project-container button {
+    width: 12px;
+    height: 12px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+}
+
+.project-container button:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    filter: invert(25%) sepia(14%) saturate(1455%) hue-rotate(169deg) brightness(93%) contrast(90%);
+}
+
+#myProjects {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#today-link-container:hover {
+    filter: invert(66%) sepia(72%) saturate(4780%) hue-rotate(326deg) brightness(94%) contrast(100%);
+    color:#F05454;
+    cursor: pointer;
+    border-radius: 6px;
+}
+#general-link-container:hover {
+    filter: invert(66%) sepia(72%) saturate(4780%) hue-rotate(326deg) brightness(94%) contrast(100%);
+    color:#F05454;
+    cursor: pointer;
+    border-radius: 6px;
 }
 
 #mainDisplay {
-    border: 1px solid black;
-    margin-bottom: 1rem;
+    width: 880px;
+    padding: 1.2rem;
+    overflow: hidden;
+}
+
+.todo-container {
+    color: #222831;
     display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+    align-items: center;
+    width: 100%;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break:break-all;
+    overflow: hidden;
+    font-size: 0.8rem;
+}
+
+.todo-container p {
+    width: 160px;
+    overflow: hidden;
+}
+
+.todo-container input, button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+/*     font-size: 0;
+    line-height: 0; */
+    cursor: pointer;
+}
+
+/* .todo-container button:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    filter: invert(25%) sepia(14%) saturate(1455%) hue-rotate(169deg) brightness(93%) contrast(90%);   
+}
+.todo-container input:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    filter: invert(25%) sepia(14%) saturate(1455%) hue-rotate(169deg) brightness(93%) contrast(90%);   
+} */
+
+
+#formButtons button {
+    background-image: url(/src/delete-icon.svg);
+    width: 20px;
+    height: 20px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    font-size: 0;
+    line-height: 0;
+}
+
+#formButtons input {
+    background-color: #222831;
+    color: #DDDDDD;
+    border: none;
+    padding: 0.4rem;
+    font-size: 0.6rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#formButtons input:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    background-color: #30475E;
 }
 
 #footer {
     border: 1px solid black;
-    background-color: #f0eeee;
     position: fixed;
     left: 0;
     bottom: 0;

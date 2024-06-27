@@ -98,11 +98,14 @@ export default function addToDo() {
     let todoChangeButton = document.createElement("input");
     todoChangeButton.type = "submit";
     todoChangeButton.id = "formPopupChange";
-    todoChangeButton.value = "Change";
+    //todoChangeButton.value = "Change";
+    todoChangeButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
 
     let todoDeleteButton = document.createElement("button");
     todoDeleteButton.id = "deleteToDo";
-    todoDeleteButton.textContent = "Delete"
+    //todoDeleteButton.textContent = "Delete"
+    todoDeleteButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
+    
     todoContainer.appendChild(todoText);
     todoContainer.appendChild(todoDate);
     todoContainer.appendChild(todoImportance);
@@ -158,6 +161,7 @@ export default function addToDo() {
 
 let myProjectsHeader = document.getElementById("myProjects");
 myProjectsHeader.style.visibility = "hidden";
+myProjectsHeader.style.marginBottom = "8px";
 let projectsCounter = document.getElementById("projectsCounter");
 
 let newProject;
@@ -282,7 +286,7 @@ export function addProject() {
 
     let deleteProjectButton = document.createElement("button");
     deleteProjectButton.classList.add("delete-project-btn");
-    deleteProjectButton.innerText = "Delete project";
+    deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
 
     deleteProjectButton.addEventListener("click", (project) => {
         deleteProjectId = project.currentTarget.parentNode.id;
@@ -302,7 +306,8 @@ export function addProject() {
 
     const projectChangePopupButton = document.createElement("button");
     projectChangePopupButton.id = "projectChangePopupButton";
-    projectChangePopupButton.innerText = "Change project";
+    //projectChangePopupButton.innerText = "Change project";
+    projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
 
     const dialogProjectChange = document.getElementById("dialogChangeProject");
     projectChangePopupButton.addEventListener("click", (project) => {

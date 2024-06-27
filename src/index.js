@@ -2,7 +2,6 @@ import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChang
 import { projects }  from "./project.js";
 import { general } from "./todo.js";
 import "./style.css";
-import logo from "./icon_logo_todo.svg";
 
 console.log("default projects array:", projects);
 console.log("general todo array:", general);
