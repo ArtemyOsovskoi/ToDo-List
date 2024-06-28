@@ -82,6 +82,9 @@ export default function addToDo() {
     let todoDate = document.createElement("p");
     let todoImportance = document.createElement("p");
     let todoProject = document.createElement("p");
+    let todoCheckbox = document.createElement("input");
+    const todoLabel = document.createElement("label");
+
 
     todoContainer.id = newToDo.id;
     todoContainer.classList.add("todo-container");
@@ -91,7 +94,7 @@ export default function addToDo() {
     if (projectValue == "General") {
         todoProject.style.visibility = "hidden";
     } else {
-        todoProject.innerText = `Project: ${projectValue}`;
+        todoProject.innerText = `${projectValue}`;
     }
 
 
@@ -99,13 +102,18 @@ export default function addToDo() {
     todoChangeButton.type = "submit";
     todoChangeButton.id = "formPopupChange";
     //todoChangeButton.value = "Change";
-    todoChangeButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
+    //todoChangeButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
 
     let todoDeleteButton = document.createElement("button");
     todoDeleteButton.id = "deleteToDo";
     //todoDeleteButton.textContent = "Delete"
-    todoDeleteButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
-    
+    //todoDeleteButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
+    todoCheckbox.type="checkbox";
+    todoCheckbox.id="checkbox";
+    todoCheckbox.name="todoCheckbox";  
+    todoLabel.appendChild(todoCheckbox);
+
+    todoContainer.appendChild(todoLabel);
     todoContainer.appendChild(todoText);
     todoContainer.appendChild(todoDate);
     todoContainer.appendChild(todoImportance);
@@ -155,6 +163,14 @@ export default function addToDo() {
         deleteId = todo.currentTarget.parentNode.id;
         removeToDo(deleteId);
         todo.currentTarget.closest("div").remove();
+    })
+
+    todoCheckbox.addEventListener("click", () =>{
+        if (todoCheckbox.checked) {
+            deleteId = todoLabel.parentNode.id;
+            removeToDo(deleteId);
+            todoLabel.closest("div").remove(); 
+        }
     })
    });
 }
@@ -211,6 +227,13 @@ export function addProject() {
             let todoDate = document.createElement("p");
             let todoImportance = document.createElement("p");
             let todoProject = document.createElement("p");
+            let todoCheckbox = document.createElement("input");
+            const todoLabel = document.createElement("label");
+            todoCheckbox.type="checkbox";
+            todoCheckbox.id="checkbox";
+            todoCheckbox.name="todoCheckbox";  
+            todoLabel.appendChild(todoCheckbox);
+            todoContainer.appendChild(todoLabel);
 
             todoContainer.id = todo.id;
             todoContainer.classList.add("todo-container");
@@ -220,7 +243,7 @@ export function addProject() {
             if (todo.projectTitle == "General") {
                 todoProject.style.visibility = "hidden";
             } else {
-                todoProject.innerText = `Project: ${todo.projectTitle}`;
+                todoProject.innerText = `${todo.projectTitle}`;
             };
 
             let todoChangeButton = document.createElement("input");
@@ -280,6 +303,14 @@ export function addProject() {
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
+            });
+
+            todoCheckbox.addEventListener("click", () =>{
+                if (todoCheckbox.checked) {
+                    deleteId = todoLabel.parentNode.id;
+                    removeToDo(deleteId);
+                    todoLabel.closest("div").remove(); 
+                }
             })
         });
     });
@@ -359,6 +390,13 @@ let generalToDo = document.getElementById("generalTodo");
             let todoDate = document.createElement("p");
             let todoImportance = document.createElement("p");
             let todoProject = document.createElement("p");
+            let todoCheckbox = document.createElement("input");
+            const todoLabel = document.createElement("label");
+            todoCheckbox.type="checkbox";
+            todoCheckbox.id="checkbox";
+            todoCheckbox.name="todoCheckbox";  
+            todoLabel.appendChild(todoCheckbox);
+            todoContainer.appendChild(todoLabel);
 
             todoContainer.id = todo.id;
             todoContainer.classList.add("todo-container");
@@ -369,7 +407,7 @@ let generalToDo = document.getElementById("generalTodo");
             if (todo.projectTitle == "General") {
                 todoProject.style.visibility = "hidden";
             } else {
-                todoProject.innerText = `Project: ${todo.projectTitle}`;
+                todoProject.innerText = `${todo.projectTitle}`;
             };
 
             let todoChangeButton = document.createElement("input");
@@ -380,6 +418,7 @@ let generalToDo = document.getElementById("generalTodo");
             let todoDeleteButton = document.createElement("button");
             todoDeleteButton.id = "deleteToDo";
             todoDeleteButton.textContent = "Delete"
+
             todoContainer.appendChild(todoText);
             todoContainer.appendChild(todoDate);
             todoContainer.appendChild(todoImportance);
@@ -429,6 +468,13 @@ let generalToDo = document.getElementById("generalTodo");
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
+            });
+            todoCheckbox.addEventListener("click", () =>{
+                if (todoCheckbox.checked) {
+                    deleteId = todoLabel.parentNode.id;
+                    removeToDo(deleteId);
+                    todoLabel.closest("div").remove(); 
+                }
             })
         });
     });
@@ -450,6 +496,13 @@ export function todayTodo() {
             let todoDate = document.createElement("p");
             let todoImportance = document.createElement("p");
             let todoProject = document.createElement("p");
+            let todoCheckbox = document.createElement("input");
+            const todoLabel = document.createElement("label");
+            todoCheckbox.type="checkbox";
+            todoCheckbox.id="checkbox";
+            todoCheckbox.name="todoCheckbox";  
+            todoLabel.appendChild(todoCheckbox);
+            todoContainer.appendChild(todoLabel);
 
             todoContainer.id = todo.id;
             todoContainer.classList.add("todo-container");
@@ -460,7 +513,7 @@ export function todayTodo() {
             if (todo.projectTitle == "General") {
                 todoProject.style.visibility = "hidden";
             } else {
-                todoProject.innerText = `Project: ${todo.projectTitle}`;
+                todoProject.innerText = `${todo.projectTitle}`;
             };
 
             let todoChangeButton = document.createElement("input");
@@ -471,6 +524,7 @@ export function todayTodo() {
             let todoDeleteButton = document.createElement("button");
             todoDeleteButton.id = "deleteToDo";
             todoDeleteButton.textContent = "Delete"
+
             todoContainer.appendChild(todoText);
             todoContainer.appendChild(todoDate);
             todoContainer.appendChild(todoImportance);
@@ -520,6 +574,13 @@ export function todayTodo() {
                 deleteId = todo.currentTarget.parentNode.id;
                 removeToDo(deleteId);
                 todo.currentTarget.closest("div").remove();
+            });
+            todoCheckbox.addEventListener("click", () =>{
+                if (todoCheckbox.checked) {
+                    deleteId = todoLabel.parentNode.id;
+                    removeToDo(deleteId);
+                    todoLabel.closest("div").remove(); 
+                }
             })
         });
     });
