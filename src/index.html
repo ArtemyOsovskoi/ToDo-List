@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ToDo List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -11,12 +14,12 @@
 <header id="header">
         <div id="logo-title-container">
             <img id="logo-icon" src="/src/icon_logo_todo.svg" />
-            <p>todo</p>
+            <p>ToDo List</p>
         </div>
     <div id="menu-buttons">
         <!-- todo popup window -->
         <div id="popupButtonContainer">
-            <input type="submit" id="formPopup" value="+ Add todo"></input>
+            <input type="submit" id="formPopup" value="+ Add task"></input>
         </div>
         <!-- project popup window -->
         <div id="popupButtonProjectContainer">
@@ -50,7 +53,7 @@
                 title="Must contain at least 1 letter" required />
             </p>
             <p>
-                <label for="date">date</label>
+                <label for="date">Date</label>
                 <br>
                 <input type="date" id="date" name="date" required />
             </p>
@@ -60,14 +63,14 @@
             </p>
             <p>
                 <label for="projectInput">Project</label>
-                <input type="text" list="projectsList" id="projectInput" />
+                <input type="text" list="projectsList" id="projectInput" value="General" />
                 <datalist id="projectsList">
                     <option value="General"></option> 
                 </datalist>
             </p>
             <div id="formButtons">
                 <button value="cancel" id="closeButton" formmethod="dialog">Close</button>
-                <input type="submit" id="todoButton" value="+ Add ToDo"></input>
+                <input type="submit" id="todoButton" value="+ Add Task"></input>
             </div>
     </form>
 </dialog>
@@ -136,8 +139,6 @@
     </div>
 </div>
 </div> 
-
-
 
 <footer id="footer">
 <div class="footer">

@@ -5,10 +5,11 @@
 }
 
 html, body {
-    background-color: #DDDDDD;
+    background-color: #f0eded;
     height: 100%;
     display: flex;
     flex-direction: column;
+    font-family: 'Roboto', sans-serif;
 }
 
 #header {
@@ -36,7 +37,7 @@ html, body {
     color: #DDDDDD;
     border: none;
     padding: 1rem;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: bold;
     border-radius: 10px;
 }
@@ -50,9 +51,10 @@ html, body {
 #logo-title-container {
     display: flex;
     align-items: center;
-    font-size: 1.4rem;
+    font-size: 1.8rem;
     font-weight: 900;
     color: #DDDDDD;
+    font-family: "Nunito", sans-serif;
 }
 
 a {
@@ -87,15 +89,18 @@ a {
     height: 20px;
     width: 20px;
     filter: invert(11%) sepia(8%) saturate(1918%) hue-rotate(177deg) brightness(89%) contrast(87%);
+    margin-right: 0.6rem;
 }
 
 #general-link-container, #today-link-container {
     display: flex;
     align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 #today-link-container {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.2rem;
 }
 
 .project-container {
@@ -141,6 +146,9 @@ a {
     font-size: 1.5rem;
     font-weight: bold;
 }
+#myProjects #projectsCounter {
+    margin-left: 0.8rem;
+}
 
 #today-link-container:hover {
     filter: invert(66%) sepia(72%) saturate(4780%) hue-rotate(326deg) brightness(94%) contrast(100%);
@@ -166,6 +174,7 @@ a {
     padding: 1rem;
     color: #222831;
     display: flex;
+    align-items: center;
     width: 100%;
     text-align: left;
     word-wrap: break-word;
@@ -175,6 +184,8 @@ a {
     font-size: 1.2rem;
     gap: 8px;
     margin-bottom: 1rem;
+    border-radius: 10px;
+    background-color: #f3f2f2;
 }
 
 .todo-container p {
@@ -216,25 +227,19 @@ a {
     width: 20px;
     height: 20px;
     cursor: pointer;
+
 }
 
-
-/* .todo-container button:hover {
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    filter: invert(25%) sepia(14%) saturate(1455%) hue-rotate(169deg) brightness(93%) contrast(90%);   
+#formButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.todo-container input:hover {
-    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
-    cursor: pointer;
-    filter: invert(25%) sepia(14%) saturate(1455%) hue-rotate(169deg) brightness(93%) contrast(90%);   
-} */
-
 
 #formButtons button {
     background-image: url(/src/delete-icon.svg);
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border: none;
     background-color: transparent; 
     background-repeat: no-repeat;
@@ -247,8 +252,8 @@ a {
     background-color: #222831;
     color: #DDDDDD;
     border: none;
-    padding: 0.4rem;
-    font-size: 0.6rem;
+    padding: 0.8rem;
+    font-size: 1rem;
     border-radius: 5px;
     font-weight: bold;
 }
@@ -258,6 +263,123 @@ a {
     cursor: pointer;
     background-color: #30475E;
 }
+
+#formButtons button:hover {
+    cursor: pointer;
+}
+
+#projectInput {
+    padding: 0.2rem;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#date {
+    font-size: 1.2rem;
+}
+
+#importance {
+    height: 18px;
+    width: 18px;
+}
+
+#dialog {
+    margin-top: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);   
+    background-color: #f0eded;
+}
+
+#dialog #text {
+    font-size: 1.2rem;
+}
+
+#dialog > form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#dialog > form > * {
+    background-color: #f0eded;
+}
+
+form > p > * {
+    border: none;
+    border-radius: 5px;
+}
+
+form > p > input {
+    padding: 0.8rem 1.2rem 0.8rem 1.2rem;
+}
+
+#dialogProject {
+    margin-top: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);   
+    background-color: #f0eded;
+}
+
+#title {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+#dialogProject > form {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+#dialogProject > form > * {
+    background-color: #f0eded;
+}
+
+#formProjectButtons {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+#formProjectButtons button {
+    background-image: url(/src/delete-icon.svg);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    font-size: 0;
+    line-height: 0;
+    cursor: pointer;
+}
+
+#formProjectButtons input {
+    background-color: #222831;
+    color: #DDDDDD;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#formProjectButtons input:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    background-color: #30475E;
+}
+
 
 #footer {
     position: fixed;
@@ -272,6 +394,7 @@ a {
 .footer {
     display: flex;
     align-items: center;
+    margin-right: 0.6rem;
 }
 
 .footer a {
