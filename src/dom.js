@@ -96,7 +96,7 @@ export default function addToDo() {
     } else {
         todoProject.innerText = `${projectValue}`;
     }
-
+    
 
     let todoChangeButton = document.createElement("input");
     todoChangeButton.type = "submit";
