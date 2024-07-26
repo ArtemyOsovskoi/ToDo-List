@@ -1,6 +1,7 @@
 import ToDo, { changeToDo, general, removeToDo } from "./todo.js";
 import Project, { changeProject, projects, removeProject }  from "./project.js";
-
+localStorage.setItem("general", JSON.stringify(general));   
+localStorage.setItem("projects", JSON.stringify(projects));
 
 //new todo popup window
 export function dialogToDo() {
@@ -76,6 +77,11 @@ export default function addToDo() {
         filteredProject.arr.push(newToDo);
     }; 
 
+    //add to localStorage
+    let getGeneralLS = JSON.parse(localStorage.getItem("general"));
+    getGeneralLS.push(newToDo);
+    localStorage.setItem("general", JSON.stringify(getGeneralLS));  
+
     //DOM elements
     let todoContainer = document.createElement("div");
     let todoText = document.createElement("p");
@@ -97,7 +103,6 @@ export default function addToDo() {
         todoProject.innerText = `${projectValue}`;
     }
     
-
     let todoChangeButton = document.createElement("input");
     todoChangeButton.type = "submit";
     todoChangeButton.id = "formPopupChange";
@@ -190,6 +195,11 @@ export function addProject() {
     newProject = new Project(title);
     newProject.createProject();
     projects.push(newProject);
+
+    //add to localStorage
+    let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+    getProjectsLS.push(newProject);
+    localStorage.setItem("projects", JSON.stringify(getProjectsLS));  
 
     //DOM
     let projectContainer = document.createElement("div");
@@ -585,3 +595,103 @@ export function todayTodo() {
         });
     });
 };
+
+//display general and projects arrays from localStorage
+export function generalLocalStorage() {
+    let getGeneral = JSON.parse(localStorage.getItem("general"));
+
+    getGeneral.forEach(todo => {
+        //todo DOM elements
+    let todoContainer = document.createElement("div");
+    let todoText = document.createElement("p");
+    let todoDate = document.createElement("p");
+    let todoImportance = document.createElement("p");
+    let todoProject = document.createElement("p");
+    let todoCheckbox = document.createElement("input");
+    const todoLabel = document.createElement("label");
+    todoCheckbox.type="checkbox";
+    todoCheckbox.id="checkbox";
+    todoCheckbox.name="todoCheckbox";  
+    todoLabel.appendChild(todoCheckbox);
+    todoContainer.appendChild(todoLabel);
+
+    todoContainer.id = todo.id;
+    todoContainer.classList.add("todo-container");
+    todoText.innerText = todo.text;
+    todoDate.innerText = todo.date;
+    todoImportance.innerText = "Important";
+    
+    if (todo.projectTitle == "General") {
+        todoProject.style.visibility = "hidden";
+    } else {
+        todoProject.innerText = `${todo.projectTitle}`;
+    };
+
+    let todoChangeButton = document.createElement("input");
+    todoChangeButton.type = "submit";
+    todoChangeButton.id = "formPopupChange";
+    todoChangeButton.value = "Change";
+
+    let todoDeleteButton = document.createElement("button");
+    todoDeleteButton.id = "deleteToDo";
+    todoDeleteButton.textContent = "Delete"
+
+    todoContainer.appendChild(todoText);
+    todoContainer.appendChild(todoDate);
+    todoContainer.appendChild(todoImportance);
+    todoContainer.appendChild(todoProject);
+
+    if (todo.importance === true) {
+        todoImportance.style.visibility = "visible";
+    } else {
+        todoImportance.style.visibility = "hidden";
+    }
+
+    todoContainer.appendChild(todoChangeButton);
+    todoContainer.appendChild(todoDeleteButton);
+    mainDisplay.appendChild(todoContainer);
+
+    //change todo
+    const dialogChange = document.getElementById("dialogChange");
+        todoChangeButton.addEventListener("click", (todo) => {
+            dialogChange.showModal();
+            //get id of clicked todo
+            todoId = todo.currentTarget.parentNode.id;
+        });
+
+    const changeToDoButton = document.getElementById("todoChangeButton");
+        changeToDoButton.addEventListener("click", () => {
+            changeToDo(todoId);
+
+            let changedTodo = general.find((todo) => todo.id == todoId);
+
+            let changedContainer = document.getElementById(todoId);           
+            let changedText = changedContainer.childNodes[0];
+            let changedDate = changedContainer.childNodes[1];
+            let changedImportance = changedContainer.childNodes[2];
+
+            changedText.innerText = changedTodo.text;
+            changedDate.innerText = changedTodo.date;
+
+            if (changedTodo.importance === true) {
+                changedImportance.style.visibility = "visible";
+            } else {
+                changedImportance.style.visibility = "hidden";
+            };
+    });
+
+    //delete todo
+    todoDeleteButton.addEventListener("click", (todo) => {
+        deleteId = todo.currentTarget.parentNode.id;
+        removeToDo(deleteId);
+        todo.currentTarget.closest("div").remove();
+    });
+    todoCheckbox.addEventListener("click", () =>{
+        if (todoCheckbox.checked) {
+            deleteId = todoLabel.parentNode.id;
+            removeToDo(deleteId);
+            todoLabel.closest("div").remove(); 
+        }
+    })
+});
+}

@@ -1,4 +1,4 @@
-import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog, todayTodo, weeklyTodo, generalTodo }  from "./dom.js";
+import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog, todayTodo, weeklyTodo, generalTodo, generalLocalStorage }  from "./dom.js";
 import { projects }  from "./project.js";
 import { general } from "./todo.js";
 import "./style.css";
@@ -16,3 +16,8 @@ addProject();
 closeProjectDialog();
 
 closeDialog();
+
+//get items from localStorage on page load
+
+
+//generalLocalStorage();
