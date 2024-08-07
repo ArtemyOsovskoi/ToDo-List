@@ -1,7 +1,7 @@
 import ToDo, { changeToDo, general, removeToDo } from "./todo.js";
 import Project, { changeProject, projects, removeProject }  from "./project.js";
-localStorage.setItem("general", JSON.stringify(general));   
-localStorage.setItem("projects", JSON.stringify(projects));
+/* localStorage.setItem("general", JSON.stringify(general));   
+localStorage.setItem("projects", JSON.stringify(projects)); */
 
 //new todo popup window
 export function dialogToDo() {
@@ -78,9 +78,23 @@ export default function addToDo() {
     }; 
 
     //add to localStorage
-    let getGeneralLS = JSON.parse(localStorage.getItem("general"));
+        //if it has items
+    if (localStorage.getItem("general")) {
+        let existingGeneral = JSON.parse(localStorage.getItem("general"));
+        existingGeneral.push(newToDo);
+        localStorage.setItem("general", JSON.stringify(existingGeneral));
+    };
+        //if it's empty
+    if (localStorage.getItem("general") === null) {
+        localStorage.setItem("general", JSON.stringify(general));
+        let generalLS = JSON.parse(localStorage.getItem("general"));
+        generalLS.push(newToDo);
+    }
+    
+    
+    /* let getGeneralLS = JSON.parse(localStorage.getItem("general"));
     getGeneralLS.push(newToDo);
-    localStorage.setItem("general", JSON.stringify(getGeneralLS));  
+    localStorage.setItem("general", JSON.stringify(getGeneralLS));  */ 
 
     //DOM elements
     let todoContainer = document.createElement("div");
@@ -197,9 +211,10 @@ export function addProject() {
     projects.push(newProject);
 
     //add to localStorage
-    let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+    localStorage.setItem("projects", JSON.stringify(projects));
+/*     let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
     getProjectsLS.push(newProject);
-    localStorage.setItem("projects", JSON.stringify(getProjectsLS));  
+    localStorage.setItem("projects", JSON.stringify(getProjectsLS));   */
 
     //DOM
     let projectContainer = document.createElement("div");
@@ -597,10 +612,10 @@ export function todayTodo() {
 };
 
 //display general and projects arrays from localStorage
-export function generalLocalStorage() {
+export function generalLocalStorage() {  
     let getGeneral = JSON.parse(localStorage.getItem("general"));
-
-    getGeneral.forEach(todo => {
+    console.log(getGeneral);
+    getGeneral.forEach(todo => {       
         //todo DOM elements
     let todoContainer = document.createElement("div");
     let todoText = document.createElement("p");
@@ -694,4 +709,4 @@ export function generalLocalStorage() {
         }
     })
 });
-}
+};

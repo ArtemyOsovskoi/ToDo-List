@@ -18,6 +18,22 @@ closeProjectDialog();
 closeDialog();
 
 //get items from localStorage on page load
-
+if (localStorage.getItem("general")) {
+    generalLocalStorage();
+}
 
 //generalLocalStorage();
+/* function showSavedToDos() {
+    const keys = Object.keys(localStorage);
+    let i = keys.length;
+
+    while (i--) {
+        const newTask = document.createElement('li');
+        const removeBtn = document.createElement('button');
+        removeBtn.innerText = 'Remove Task';
+        newTask.innerText = localStorage.getItem(keys[i]);
+        newTask.appendChild(removeBtn);
+        taskList.appendChild(newTask);
+    }
+}
+showSavedToDos(); */
