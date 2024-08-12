@@ -380,6 +380,13 @@ form > p > input {
     background-color: #30475E;
 }
 
+.delete-project-btn {
+    background-image: url(/src/delete-icon.svg);
+}
+
+#projectChangePopupButton {
+    background-image: url(/src/edit-icon.svg);
+}
 
 #footer {
     position: fixed;

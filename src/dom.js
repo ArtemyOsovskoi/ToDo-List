@@ -352,7 +352,7 @@ export function addProject() {
 
     let deleteProjectButton = document.createElement("button");
     deleteProjectButton.classList.add("delete-project-btn");
-    deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
+    //deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
 
     deleteProjectButton.addEventListener("click", (project) => {
         deleteProjectId = project.currentTarget.parentNode.id;
@@ -373,7 +373,7 @@ export function addProject() {
     const projectChangePopupButton = document.createElement("button");
     projectChangePopupButton.id = "projectChangePopupButton";
     //projectChangePopupButton.innerText = "Change project";
-    projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
+    //projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
 
     const dialogProjectChange = document.getElementById("dialogChangeProject");
     projectChangePopupButton.addEventListener("click", (project) => {
@@ -850,7 +850,7 @@ export function projectsLocalStorage() {
 
     let deleteProjectButton = document.createElement("button");
     deleteProjectButton.classList.add("delete-project-btn");
-    deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
+    //deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
 
     deleteProjectButton.addEventListener("click", (project) => {
         deleteProjectId = project.currentTarget.parentNode.id;
@@ -871,7 +871,7 @@ export function projectsLocalStorage() {
     const projectChangePopupButton = document.createElement("button");
     projectChangePopupButton.id = "projectChangePopupButton";
     //projectChangePopupButton.innerText = "Change project";
-    projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
+    //projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
 
     const dialogProjectChange = document.getElementById("dialogChangeProject");
     projectChangePopupButton.addEventListener("click", (project) => {
@@ -901,5 +901,11 @@ export function projectsLocalStorage() {
         let getTodoContainer = document.getElementById(changedProjectTitle.id);
         getTodoContainer.childNodes[3].innerText = changedProject.title;
    });
+   const nav = document.getElementById("nav");
+   projectContainer.appendChild(projectLink);
+   projectContainer.appendChild(deleteProjectButton);
+   projectContainer.appendChild(projectChangePopupButton);
+   nav.appendChild(projectContainer);
     });
+    
 };
