@@ -211,10 +211,20 @@ export function addProject() {
     projects.push(newProject);
 
     //add to localStorage
-    localStorage.setItem("projects", JSON.stringify(projects));
-/*     let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
-    getProjectsLS.push(newProject);
-    localStorage.setItem("projects", JSON.stringify(getProjectsLS));   */
+
+    //add to localStorage
+        //if it has items
+        if (localStorage.getItem("projects")) {
+            let existingProjects = JSON.parse(localStorage.getItem("projects"));
+            existingProjects.push(newProject);
+            localStorage.setItem("projects", JSON.stringify(existingProjects));
+        };
+            //if it's empty
+        if (localStorage.getItem("projects") === null) {
+            localStorage.setItem("projects", JSON.stringify(projects));
+            let projectsLS = JSON.parse(localStorage.getItem("projects"));
+            projectsLS.push(newProject);
+        }
 
     //DOM
     let projectContainer = document.createElement("div");
@@ -614,7 +624,7 @@ export function todayTodo() {
 //display general and projects arrays from localStorage
 export function generalLocalStorage() {  
     let getGeneral = JSON.parse(localStorage.getItem("general"));
-    console.log(getGeneral);
+    
     getGeneral.forEach(todo => {       
         //todo DOM elements
     let todoContainer = document.createElement("div");
@@ -709,4 +719,187 @@ export function generalLocalStorage() {
         }
     })
 });
+};
+
+export function projectsLocalStorage() {  
+    let getProjects = JSON.parse(localStorage.getItem("projects"));
+    
+    getProjects.forEach(project => {       
+    let projectContainer = document.createElement("div");
+    let projectLink = document.createElement("a");
+    projectContainer.classList.add("project-container");
+    projectContainer.id = project.id;
+    projectLink.classList.add("project-link");
+    projectLink.innerText = project.title;
+    projectLink.href = "javascript:void(0);";
+
+    if (myProjectsHeader.style.visibility = "hidden") {myProjectsHeader.style.visibility = "visible";}
+    
+    projectsCounter.innerText = projects.length - 1;
+
+    const projectsDataList = document.getElementById("projectsList");
+    let option = document.createElement("option");
+    option.id = project.id;
+    option.value = project.title;
+    option.innerText = option.value;
+    projectsDataList.appendChild(option);
+
+    projectLink.addEventListener("click", (project) => {
+        //clean todo display
+        while (mainDisplay.hasChildNodes()) {
+            mainDisplay.removeChild(mainDisplay.firstChild);
+        };
+        //get which project is created
+        linkId = project.currentTarget.parentNode.id;
+        let linkProject = projects.find((project) => project.id == linkId);
+
+        linkProject.arr.forEach(todo => {
+        //todo DOM elements
+            let todoContainer = document.createElement("div");
+            let todoText = document.createElement("p");
+            let todoDate = document.createElement("p");
+            let todoImportance = document.createElement("p");
+            let todoProject = document.createElement("p");
+            let todoCheckbox = document.createElement("input");
+            const todoLabel = document.createElement("label");
+            todoCheckbox.type="checkbox";
+            todoCheckbox.id="checkbox";
+            todoCheckbox.name="todoCheckbox";  
+            todoLabel.appendChild(todoCheckbox);
+            todoContainer.appendChild(todoLabel);
+
+            todoContainer.id = todo.id;
+            todoContainer.classList.add("todo-container");
+            todoText.innerText = todo.text;
+            todoDate.innerText = todo.date;
+            todoImportance.innerText = "Important";
+            if (todo.projectTitle == "General") {
+                todoProject.style.visibility = "hidden";
+            } else {
+                todoProject.innerText = `${todo.projectTitle}`;
+            };
+
+            let todoChangeButton = document.createElement("input");
+            todoChangeButton.type = "submit";
+            todoChangeButton.id = "formPopupChange";
+            todoChangeButton.value = "Change";
+
+            let todoDeleteButton = document.createElement("button");
+            todoDeleteButton.id = "deleteToDo";
+            todoDeleteButton.textContent = "Delete"
+            todoContainer.appendChild(todoText);
+            todoContainer.appendChild(todoDate);
+            todoContainer.appendChild(todoImportance);
+            todoContainer.appendChild(todoProject);
+
+            if (todo.importance === true) {
+                todoImportance.style.visibility = "visible";
+            } else {
+                todoImportance.style.visibility = "hidden";
+            }
+
+            todoContainer.appendChild(todoChangeButton);
+            todoContainer.appendChild(todoDeleteButton);
+            mainDisplay.appendChild(todoContainer);
+
+            //change todo
+            const dialogChange = document.getElementById("dialogChange");
+                todoChangeButton.addEventListener("click", (todo) => {
+                    dialogChange.showModal();
+                    //get id of clicked todo
+                    todoId = todo.currentTarget.parentNode.id;
+                });
+
+            const changeToDoButton = document.getElementById("todoChangeButton");
+                changeToDoButton.addEventListener("click", () => {
+                    changeToDo(todoId);
+
+                    let changedTodo = general.find((todo) => todo.id == todoId);
+
+                    let changedContainer = document.getElementById(todoId);           
+                    let changedText = changedContainer.childNodes[0];
+                    let changedDate = changedContainer.childNodes[1];
+                    let changedImportance = changedContainer.childNodes[2];
+
+                    changedText.innerText = changedTodo.text;
+                    changedDate.innerText = changedTodo.date;
+
+                    if (changedTodo.importance === true) {
+                        changedImportance.style.visibility = "visible";
+                    } else {
+                        changedImportance.style.visibility = "hidden";
+                    };
+            });
+
+            //delete todo
+            todoDeleteButton.addEventListener("click", (todo) => {
+                deleteId = todo.currentTarget.parentNode.id;
+                removeToDo(deleteId);
+                todo.currentTarget.closest("div").remove();
+            });
+
+            todoCheckbox.addEventListener("click", () =>{
+                if (todoCheckbox.checked) {
+                    deleteId = todoLabel.parentNode.id;
+                    removeToDo(deleteId);
+                    todoLabel.closest("div").remove(); 
+                }
+            })
+        });
+    });
+
+    let deleteProjectButton = document.createElement("button");
+    deleteProjectButton.classList.add("delete-project-btn");
+    deleteProjectButton.style.backgroundImage = 'url("/src/delete-icon.svg")';
+
+    deleteProjectButton.addEventListener("click", (project) => {
+        deleteProjectId = project.currentTarget.parentNode.id;
+        const findProjectId = projects.find((project) => project.id == deleteProjectId);
+        findProjectId.arr.forEach(todo => {
+            let getTodoContainer = document.getElementById(todo.id);
+            getTodoContainer.remove();
+        });
+
+        removeProject(deleteProjectId);
+        projectsCounter.innerText = projects.length - 1;
+        if (projectsCounter.innerText == 0) {
+            myProjectsHeader.style.visibility = "hidden";
+        };
+        project.currentTarget.closest("div").remove();
+    });
+
+    const projectChangePopupButton = document.createElement("button");
+    projectChangePopupButton.id = "projectChangePopupButton";
+    //projectChangePopupButton.innerText = "Change project";
+    projectChangePopupButton.style.backgroundImage = 'url("/src/edit-icon.svg")';
+
+    const dialogProjectChange = document.getElementById("dialogChangeProject");
+    projectChangePopupButton.addEventListener("click", (project) => {
+        dialogProjectChange.showModal();
+        changeProjectId = project.currentTarget.parentNode.id;
+    });
+
+    const changeProjectButton = document.getElementById("projectChangeButton");
+    changeProjectButton.addEventListener("click", () => {
+        changeProject(changeProjectId);
+        let changedProject = projects.find((project) => project.id == changeProjectId);
+        let changedProjectContainer = document.getElementById(changeProjectId);
+        let changedTitle = changedProjectContainer.childNodes[0];
+        changedTitle.innerText = changedProject.title;
+
+        let getOptions = Array.from(projectsDataList.children);
+        let changedOption = getOptions.find((option) => parseInt(option.id) == changeProjectId);
+        changedOption.value = changedProject.title;
+        changedOption.innerText = changedProject.title;
+
+        //change todos project title which changed
+        changedProject.arr.forEach(todo => {
+            todo.projectTitle = changedProject.title;
+        });
+
+        let changedProjectTitle = changedProject.arr.find((todo) => todo.projectTitle == changedProject.title);
+        let getTodoContainer = document.getElementById(changedProjectTitle.id);
+        getTodoContainer.childNodes[3].innerText = changedProject.title;
+   });
+    });
 };

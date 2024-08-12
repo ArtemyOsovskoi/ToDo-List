@@ -1,4 +1,4 @@
-import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog, todayTodo, weeklyTodo, generalTodo, generalLocalStorage }  from "./dom.js";
+import addToDo, { closeDialog, dialogToDo, dialogProject, addProject, closeChangeDialog, closeProjectDialog, todayTodo, weeklyTodo, generalTodo, generalLocalStorage, projectsLocalStorage }  from "./dom.js";
 import { projects }  from "./project.js";
 import { general } from "./todo.js";
 import "./style.css";
@@ -17,23 +17,19 @@ closeProjectDialog();
 
 closeDialog();
 
-//get items from localStorage on page load
+//get items from localStorage on page load if it's not empty
 if (localStorage.getItem("general")) {
     generalLocalStorage();
-}
 
-//generalLocalStorage();
-/* function showSavedToDos() {
-    const keys = Object.keys(localStorage);
-    let i = keys.length;
+    //fill general array with localstorage "general" objects
+    let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
+    general.push(...localStorageGeneral);  
+};
 
-    while (i--) {
-        const newTask = document.createElement('li');
-        const removeBtn = document.createElement('button');
-        removeBtn.innerText = 'Remove Task';
-        newTask.innerText = localStorage.getItem(keys[i]);
-        newTask.appendChild(removeBtn);
-        taskList.appendChild(newTask);
-    }
-}
-showSavedToDos(); */
+if (localStorage.getItem("projects")) {
+    projectsLocalStorage();
+
+    //fill projects array
+    let localStorageProjects = JSON.parse(localStorage.getItem("projects"));
+    projects.push(...localStorageProjects);
+};
