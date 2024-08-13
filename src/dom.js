@@ -75,6 +75,11 @@ export default function addToDo() {
 
     if (projectValue != "General" && projectValue === filteredProject.title) {
         filteredProject.arr.push(newToDo);
+        //add to localstorage project array
+        let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+        let filterProjectLS = getProjectsLS.filter(project => project.title === projectInput.value)[0];
+        filterProjectLS.arr.push(newToDo);
+        localStorage.setItem("projects", JSON.stringify(getProjectsLS));
     }; 
 
     //add to localStorage
@@ -90,11 +95,6 @@ export default function addToDo() {
         let generalLS = JSON.parse(localStorage.getItem("general"));
         generalLS.push(newToDo);
     }
-    
-    
-    /* let getGeneralLS = JSON.parse(localStorage.getItem("general"));
-    getGeneralLS.push(newToDo);
-    localStorage.setItem("general", JSON.stringify(getGeneralLS));  */ 
 
     //DOM elements
     let todoContainer = document.createElement("div");

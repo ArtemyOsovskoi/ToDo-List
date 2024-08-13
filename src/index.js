@@ -19,17 +19,17 @@ closeDialog();
 
 //get items from localStorage on page load if it's not empty
 if (localStorage.getItem("general")) {
-    generalLocalStorage();
+        //fill general array with localstorage "general" objects
+        let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
+        general.push(...localStorageGeneral);  
 
-    //fill general array with localstorage "general" objects
-    let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
-    general.push(...localStorageGeneral);  
+    generalLocalStorage();
 };
 
 if (localStorage.getItem("projects")) {
-    projectsLocalStorage();
+        //fill projects array
+        let localStorageProjects = JSON.parse(localStorage.getItem("projects"));
+        projects.push(...localStorageProjects);
 
-    //fill projects array
-    let localStorageProjects = JSON.parse(localStorage.getItem("projects"));
-    projects.push(...localStorageProjects);
+    projectsLocalStorage();
 };

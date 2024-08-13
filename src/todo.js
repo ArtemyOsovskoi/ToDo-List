@@ -45,11 +45,7 @@ export function removeToDo(deleteId) {
   //remove from localstorage
   let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
   let toRemoveTodoLS = localStorageGeneral.find((todo) => todo.id == deleteId);
-  localStorageGeneral.splice(localStorageGeneral.indexOf(toRemoveTodoLS), 1);
-  localStorage.setItem("general", JSON.stringify(localStorageGeneral));
 
-
-  
   //remove from general array
   const toRemoveId = general.find((todo) => todo.id == deleteId);
   general.splice(general.indexOf(toRemoveId), 1);
@@ -63,5 +59,13 @@ export function removeToDo(deleteId) {
       toRemoveProjectId.arr.indexOf(toRemoveProjectId),
       1
     );
+
+    //remove from project's arr in localstorage
+    let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+    let toRemoveProjectLS = getProjectsLS.find((project) => project.arr.find((todo) => todo.id == deleteId));
+    toRemoveProjectLS.arr.splice(toRemoveProjectLS.arr.indexOf(toRemoveProjectLS), 1);
+    localStorage.setItem("projects", JSON.stringify(getProjectsLS));
   }
+  localStorageGeneral.splice(localStorageGeneral.indexOf(toRemoveTodoLS), 1);
+  localStorage.setItem("general", JSON.stringify(localStorageGeneral));
 }
