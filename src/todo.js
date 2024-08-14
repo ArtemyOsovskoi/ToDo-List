@@ -23,6 +23,26 @@ export default class ToDo {
 }
 
 export function changeToDo(todoId) {
+  //change in localstorage
+  let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
+  let toChangeIdLS = localStorageGeneral.find((todo) => todo.id == todoId);
+  toChangeIdLS.text = document.getElementById("textChange").value;
+  toChangeIdLS.date = document.getElementById("dateChange").value;
+  toChangeIdLS.importance = document.getElementById("importanceChange").checked;
+
+  if (toChangeIdLS.projectTitle != "General") {
+    let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+    let toChangeIdProjectLS = getProjectsLS.find((project) =>
+      project.arr.find((todo) => todo.id == todoId)
+    );
+    toChangeIdProjectLS.arr.text = document.getElementById("textChange").value;
+    toChangeIdProjectLS.arr.date = document.getElementById("dateChange").value;
+    toChangeIdProjectLS.arr.importance = document.getElementById("importanceChange").checked;
+    localStorage.setItem("projects", JSON.stringify(getProjectsLS));
+  }
+  localStorage.setItem("general", JSON.stringify(localStorageGeneral));
+
+  //change in general array
   let toChangeId = general.find((todo) => todo.id == todoId);
   //change current todo text, date and importance
   toChangeId.text = document.getElementById("textChange").value;
