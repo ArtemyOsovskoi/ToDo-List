@@ -32,12 +32,15 @@ export function changeToDo(todoId) {
 
   if (toChangeIdLS.projectTitle != "General") {
     let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
-    let toChangeIdProjectLS = getProjectsLS.find((project) =>
-      project.arr.find((todo) => todo.id == todoId)
-    );
-    toChangeIdProjectLS.arr.text = document.getElementById("textChange").value;
-    toChangeIdProjectLS.arr.date = document.getElementById("dateChange").value;
-    toChangeIdProjectLS.arr.importance = document.getElementById("importanceChange").checked;
+    //find project with title=todo project title from general ls array
+    let toChangeIdProjectLS = getProjectsLS.find((project) => project.title == toChangeIdLS.projectTitle);
+    //within that project find projects todo with id=todoId
+    let toChangeIdProjectTodoLS = toChangeIdProjectLS.arr.find((todo) => todo.id == todoId);
+    console.log(toChangeIdProjectTodoLS);
+    //assign new values
+    toChangeIdProjectTodoLS.text = document.getElementById("textChange").value;
+    toChangeIdProjectTodoLS.date = document.getElementById("dateChange").value;
+    toChangeIdProjectTodoLS.importance = document.getElementById("importanceChange").checked;
     localStorage.setItem("projects", JSON.stringify(getProjectsLS));
   }
   localStorage.setItem("general", JSON.stringify(localStorageGeneral));

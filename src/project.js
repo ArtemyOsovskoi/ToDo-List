@@ -19,6 +19,13 @@ export default class Project {
 }
 
 export function changeProject(projectId) {
+  //change in localstorage
+  let getProjectsLS = JSON.parse(localStorage.getItem("projects"));
+  let toChangeIdProjectLS = getProjectsLS.find((project) => project.id == projectId);
+  toChangeIdProjectLS.title = document.getElementById("titleChange").value;
+  localStorage.setItem("projects", JSON.stringify(getProjectsLS));
+
+  //change in projects array
   let toChangeIdProject = projects.find((project) => project.id == projectId);
   toChangeIdProject.title = document.getElementById("titleChange").value;
 }

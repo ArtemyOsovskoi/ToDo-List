@@ -22,7 +22,7 @@ if (localStorage.getItem("general")) {
         //fill general array with localstorage "general" objects
         let localStorageGeneral = JSON.parse(localStorage.getItem("general"));
         general.push(...localStorageGeneral);  
-
+    //display dom
     generalLocalStorage();
 };
 
@@ -30,6 +30,6 @@ if (localStorage.getItem("projects")) {
         //fill projects array
         let localStorageProjects = JSON.parse(localStorage.getItem("projects"));
         projects.push(...localStorageProjects);
-
+    //display dom
     projectsLocalStorage();
 };
