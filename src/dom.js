@@ -163,14 +163,14 @@ export default function addToDo() {
             let changedTodo = general.find((todo) => todo.id == todoId);
 
             let changedContainer = document.getElementById(todoId);           
-            let changedText = changedContainer.childNodes[0];
-            let changedDate = changedContainer.childNodes[1];
-            let changedImportance = changedContainer.childNodes[2];
+            let changedText = changedContainer.childNodes[1];
+            let changedDate = changedContainer.childNodes[2];
+            let changedImportance = changedContainer.childNodes[3];
 
             changedText.innerText = changedTodo.text;
             changedDate.innerText = changedTodo.date;
 
-            if (changedTodo.importance === true) {
+            if (changedTodo.importance == true) {
                 changedImportance.style.visibility = "visible";
             } else {
                 changedImportance.style.visibility = "hidden";
@@ -319,9 +319,9 @@ export function addProject() {
                     let changedTodo = general.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
-                    let changedText = changedContainer.childNodes[0];
-                    let changedDate = changedContainer.childNodes[1];
-                    let changedImportance = changedContainer.childNodes[2];
+                    let changedText = changedContainer.childNodes[1];
+                    let changedDate = changedContainer.childNodes[2];
+                    let changedImportance = changedContainer.childNodes[3];
 
                     changedText.innerText = changedTodo.text;
                     changedDate.innerText = changedTodo.date;
@@ -484,9 +484,9 @@ let generalToDo = document.getElementById("generalTodo");
                     let changedTodo = general.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
-                    let changedText = changedContainer.childNodes[0];
-                    let changedDate = changedContainer.childNodes[1];
-                    let changedImportance = changedContainer.childNodes[2];
+                    let changedText = changedContainer.childNodes[1];
+                    let changedDate = changedContainer.childNodes[2];
+                    let changedImportance = changedContainer.childNodes[3];
 
                     changedText.innerText = changedTodo.text;
                     changedDate.innerText = changedTodo.date;
@@ -590,9 +590,9 @@ export function todayTodo() {
                     let changedTodo = general.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
-                    let changedText = changedContainer.childNodes[0];
-                    let changedDate = changedContainer.childNodes[1];
-                    let changedImportance = changedContainer.childNodes[2];
+                    let changedText = changedContainer.childNodes[1];
+                    let changedDate = changedContainer.childNodes[2];
+                    let changedImportance = changedContainer.childNodes[3];
 
                     changedText.innerText = changedTodo.text;
                     changedDate.innerText = changedTodo.date;
@@ -691,9 +691,9 @@ export function generalLocalStorage() {
             let changedTodo = general.find((todo) => todo.id == todoId);
 
             let changedContainer = document.getElementById(todoId);           
-            let changedText = changedContainer.childNodes[0];
-            let changedDate = changedContainer.childNodes[1];
-            let changedImportance = changedContainer.childNodes[2];
+            let changedText = changedContainer.childNodes[1];
+            let changedDate = changedContainer.childNodes[2];
+            let changedImportance = changedContainer.childNodes[3];
 
             changedText.innerText = changedTodo.text;
             changedDate.innerText = changedTodo.date;
@@ -817,9 +817,9 @@ export function projectsLocalStorage() {
                     let changedTodo = general.find((todo) => todo.id == todoId);
 
                     let changedContainer = document.getElementById(todoId);           
-                    let changedText = changedContainer.childNodes[0];
-                    let changedDate = changedContainer.childNodes[1];
-                    let changedImportance = changedContainer.childNodes[2];
+                    let changedText = changedContainer.childNodes[1];
+                    let changedDate = changedContainer.childNodes[2];
+                    let changedImportance = changedContainer.childNodes[3];
 
                     changedText.innerText = changedTodo.text;
                     changedDate.innerText = changedTodo.date;

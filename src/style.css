@@ -295,6 +295,18 @@ a {
     background-color: #f0eded;
 }
 
+#dialogChange {
+    margin-top: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);   
+    background-color: #f0eded;
+}
+
 #dialog #text {
     font-size: 1.2rem;
 }
@@ -319,6 +331,18 @@ form > p > input {
 }
 
 #dialogProject {
+    margin-top: 9rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3rem;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px 3px rgba(0, 0, 0, 0.1);   
+    background-color: #f0eded;
+}
+
+#dialogChangeProject {
     margin-top: 9rem;
     margin-left: auto;
     margin-right: auto;
@@ -380,12 +404,91 @@ form > p > input {
     background-color: #30475E;
 }
 
+#todoChangeButton {
+    background-color: #222831;
+    color: #DDDDDD;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#todoChangeButton:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    background-color: #30475E;
+}
+
+#projectChangeButton {
+    background-color: #222831;
+    color: #DDDDDD;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#projectChangeButton:hover {
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    cursor: pointer;
+    background-color: #30475E;
+}
+
+#closeChangeButton {
+    background-image: url(/src/delete-icon.svg);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    font-size: 0;
+    line-height: 0;  
+}
+
+#closeChangeButton:hover {
+    cursor: pointer;
+}
+
+#closeProjectChangeButton {
+    background-image: url(/src/delete-icon.svg);
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: transparent; 
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    font-size: 0;
+    line-height: 0;  
+}
+
+#closeProjectChangeButton:hover {
+    cursor: pointer;
+}
+
 .delete-project-btn {
     background-image: url(/src/delete-icon.svg);
 }
 
 #projectChangePopupButton {
     background-image: url(/src/edit-icon.svg);
+}
+
+#formChange {
+    display: flex;
+    flex-direction: column;
+}
+
+#formProjectChange {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.todo-container > p:nth-child(4) {
+    color: #F05454;
 }
 
 #footer {
