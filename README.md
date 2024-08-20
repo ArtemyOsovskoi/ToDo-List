@@ -13,6 +13,7 @@ Finished 19.08.24
 Due to technical issues and other circumstances I took a break for more than a month.
 I learned: 
 - working with webpack
+- working with local storage api
 - modules and separating the code
 - objects manipulation
 - DOM manipulation
